@@ -8,7 +8,7 @@ public class World : MonoBehaviour {
 	public WorldTile[] tileList = new WorldTile[32];
 
 	/**The tile lookup list, used for loading tiles*/
-	public Dictionary<string, Tile> tileLookup = new Dictionary<string, Tile>();
+	public static Dictionary<string, Tile> tileLookup = new Dictionary<string, Tile>();
 
 	/**The chunk object to create*/
 	public WorldChunk chunkPrefab;
@@ -21,12 +21,18 @@ public class World : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		
 		//Generate();
 
 		//regions.Add(new IntPosition(0, 0, 0), new WorldChunk()); 
 
 		//TestGeneration();
+		string packName = "base";
+
+
+		foreach(string key in tileLookup.Keys)
+		{
+			Debug.Log("registry " + key);
+		}
 	}
 	
 	// Update is called once per frame
@@ -167,6 +173,12 @@ public class World : MonoBehaviour {
 		}
 
 		return model;
+	}
+
+	/**Registers a tile in the registry*/
+	public static void addTileRegistry(string pack, string name, Tile tile)
+	{
+		tileLookup.Add(pack + ":tile:" + name, tile);
 	}
 }
 

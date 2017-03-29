@@ -173,6 +173,7 @@ public class Tile
 	}
 }
 
+[System.Serializable]
 public class TileRenderer
 {
 	
