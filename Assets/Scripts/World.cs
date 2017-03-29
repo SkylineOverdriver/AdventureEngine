@@ -7,6 +7,9 @@ public class World : MonoBehaviour {
 	/**The tile list*/
 	public WorldTile[] tileList = new WorldTile[32];
 
+	/**The tile lookup list, used for loading tiles*/
+	public Dictionary<string, Tile> tileLookup = new Dictionary<string, Tile>();
+
 	/**The chunk object to create*/
 	public WorldChunk chunkPrefab;
 

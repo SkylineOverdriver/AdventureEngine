@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WorldTile : MonoBehaviour {
-
-	/**The initalization position of this tile*/
-	public IntPosition position;
-	/**The tile identification number*/
-	public int tileID = 0;
+	
 	/**The tile that this tile is based off of*/
 	public Tile tile;
 
@@ -21,6 +17,11 @@ public class WorldTile : MonoBehaviour {
 	void Update () 
 	{
 		
+	}
+
+	public IntPosition getPosition()
+	{
+		return tile.position;
 	}
 }
 
@@ -108,6 +109,10 @@ public class IntPosition2D : IntPosition
 [System.Serializable]
 public class Tile
 {
+	/**The initalization position of this tile*/
+	public IntPosition position;
+	/**The ID of this tile*/
+	public int tileID = 0;
 	/**How this tile is rendered*/
 	public TileRenderer renderer;
 	/**Should this tile render the north face*/
