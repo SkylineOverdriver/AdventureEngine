@@ -26,12 +26,49 @@ public class World : MonoBehaviour {
 		//regions.Add(new IntPosition(0, 0, 0), new WorldChunk()); 
 
 		//TestGeneration();
-		string packName = "base";
+		/*string packName = "base";
+		EngineControl.loadedRegistry = new EngineRegistry();
+		EngineControl.loadedRegistry.register(packName, "test", null);
+		EngineControl.loadedRegistry.registerTile(packName, "testTile", new Tile());
+		EngineControl.loadedRegistry.registerEntity(packName, "testEntity", null);
+		EngineControl.loadedRegistry.registerItem(packName, "testItem", null);
+		EngineControl.loadedRegistry.registerWorld(packName, "testWorld", null);
+		EngineControl.loadedRegistry.registerSound(packName, "testSound", null);
+		EngineControl.loadedRegistry.registerModel(packName, "testModel", null);
+		EngineControl.loadedRegistry.registerSprite(packName, "testSprite", null);
+		EngineControl.loadedRegistry.register(":tile:testTile", new Tile());
 
+		int rcount = 0;
 
-		foreach(string key in tileLookup.Keys)
+		foreach(string key in EngineControl.loadedRegistry.registry.Keys)
 		{
-			Debug.Log("registry " + key);
+			rcount++;
+			Debug.Log("registryID@" + rcount + " - " + key);
+		}
+
+		Debug.Log(EngineControl.loadedRegistry.retriveTile("base", "testTile"));
+		Debug.Log(EngineControl.loadedRegistry.retriveTile("", "testTile"));*/
+
+		EngineControl.loadedRegistry = new EngineRegistry();
+		//Registry Test right here
+		EngineControl.loadedRegistry.register("base", "tile", "testGround", new Tile());
+		Tile tileAddition = EngineControl.loadedRegistry.retriveTile("base", "testGround");
+
+		for(int px = -5; px <= 5; px++)
+		{
+			for(int py = -5; py <= 5; py++)
+			{
+				GameObject tileInstance = Instantiate(EngineControl.genericObject, this.transform);
+				tileInstance.AddComponent<WorldTile>().tile = tileAddition;
+				tileInstance.transform.position = new Vector3(px, 0, py);
+				tileInstance.name = "Tile " + px + " " + py;
+				tileInstance.AddComponent<BoxCollider>();
+				GameModel model = new GameModel(-4);
+				model.setOffset(new Vector3(-0.5f, -0.5f, -0.5f));
+				model.addQuad(4);
+				tileInstance.AddComponent<MeshFilter>().mesh = model.ToMesh();
+				tileInstance.AddComponent<MeshRenderer>();
+			}
 		}
 	}
 	
@@ -236,6 +273,12 @@ public class GameModel
 		vertexOffset = vertOffset;
 	}
 
+	/**Returns the vertex offset of the mesh*/
+	public Vector3 getOffset()
+	{
+		return vertexOffset;
+	}
+
 	/**Sets the vertex index*/
 	public void setVertIndex(int newIndex)
 	{
@@ -358,6 +401,18 @@ public class GameModel
 		{
 			this.addUV0(uv0[i]);
 		}
+	}
+
+	/**Returns this model object as a mesh*/
+	public Mesh ToMesh()
+	{
+		Mesh newMesh = new Mesh();
+		newMesh.SetVertices(verticies);
+		newMesh.SetTriangles(triangles, 0);
+		newMesh.SetUVs(0, uv0);
+		newMesh.RecalculateNormals();
+		newMesh.RecalculateBounds();
+		return newMesh;
 	}
 }
 

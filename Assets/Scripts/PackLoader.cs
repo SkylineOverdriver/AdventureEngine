@@ -23,13 +23,6 @@ public class StoryPack
 {
 	//TODO: Do this after the base game has been coded, this will load assets into the game
 
-	/**The registry for this pack*/
-	public EngineRegistry registry = new EngineRegistry();
-
-	/**The models in this story pack*/
-	public GameModel models;
-
-	
 }
 
 [System.Serializable]
@@ -84,6 +77,12 @@ public class SoundLoader
 public class CutsceneLoader
 {
 	
+}
+
+[System.Serializable]
+public class StructureLoader
+{
+	//Structures are generated in worlds, they can be random or defined
 }
 
 [System.Serializable]
