@@ -35,7 +35,7 @@ public class EngineControl : MonoBehaviour {
 	}
 }
 
-public enum EngbliineRenderMode
+public enum EngineRenderMode
 {
 	BUILTIN,
 	OPENGL,

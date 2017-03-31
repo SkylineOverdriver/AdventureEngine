@@ -22,7 +22,12 @@ public class PackLoader : MonoBehaviour {
 public class StoryPack
 {
 	//TODO: Do this after the base game has been coded, this will load assets into the game
-
+	/**The registry for this storypack*/
+	public EngineRegistry storyRegistry;
+	/**The storypack render mode*/
+	public EngineRenderMode packRenderMode = EngineRenderMode.BUILTIN;
+	/**The pack paly mode*/
+	public EngineGamePlayMode packPlayMode;
 }
 
 [System.Serializable]
@@ -83,6 +88,24 @@ public class CutsceneLoader
 public class StructureLoader
 {
 	//Structures are generated in worlds, they can be random or defined
+}
+
+[System.Serializable]
+public class MaterialLoader
+{
+
+}
+
+[System.Serializable]
+public class CraftingLoader
+{
+	
+}
+
+[System.Serializable]
+public class UILoader
+{
+	
 }
 
 [System.Serializable]

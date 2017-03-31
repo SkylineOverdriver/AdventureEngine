@@ -30,6 +30,12 @@ public class WorldChunk : MonoBehaviour {
 		}
 	}
 
+	/***/
+	public void OnTriggerEnter(Collider other)
+	{
+		
+	}
+
 	/**Generates this chunk at it's position*/
 	public void Generate()
 	{

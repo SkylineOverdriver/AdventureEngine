@@ -16,6 +16,7 @@ public class World : MonoBehaviour {
 	/**The world chunks currently loaded*/
 	public Dictionary<IntPosition, Chunk> chunks = new Dictionary<IntPosition, Chunk>();
 
+	/**Test for world generation*/
 	public int worldSize = 1;
 
 	// Use this for initialization
