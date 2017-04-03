@@ -19,6 +19,7 @@ public class WorldTile : MonoBehaviour {
 		
 	}
 
+	/**Returns the position of this tile*/
 	public IntPosition getPosition()
 	{
 		return tile.position;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldChunk : MonoBehaviour {
+public class Chunk3D : MonoBehaviour {
 
 	/**The internal chunk that is this one*/
 	public Chunk chunk;
@@ -30,10 +30,22 @@ public class WorldChunk : MonoBehaviour {
 		}
 	}
 
-	/***/
+	//When any gameobject enters the trigger
 	public void OnTriggerEnter(Collider other)
 	{
-		
+		if(other.CompareTag("Player"))
+		{
+			containsPlayer = true;
+		}
+	}
+
+	//When any gameobject exits the trigger8
+	public void OnTriggerExit(Collider other)
+	{
+		if(other.CompareTag("Player"))
+		{
+			containsPlayer = false;
+		}
 	}
 
 	/**Generates this chunk at it's position*/

@@ -11,7 +11,7 @@ public class World : MonoBehaviour {
 	public static Dictionary<string, Tile> tileLookup = new Dictionary<string, Tile>();
 
 	/**The chunk object to create*/
-	public WorldChunk chunkPrefab;
+	public Chunk3D chunkPrefab;
 
 	/**The world chunks currently loaded*/
 	public Dictionary<IntPosition, Chunk> chunks = new Dictionary<IntPosition, Chunk>();
@@ -93,7 +93,7 @@ public class World : MonoBehaviour {
 					GameObject chunkObj = (GameObject) Instantiate(chunkPrefab.gameObject, this.transform);
 					chunkObj.transform.position = new Vector3(x,y,z);
 					chunkObj.name = "Chunk (" + x + "," + y + "," + z + ")";
-					WorldChunk chunkWorld = chunkObj.AddComponent<WorldChunk>();
+					Chunk3D chunkWorld = chunkObj.AddComponent<Chunk3D>();
 					chunkWorld.chunk = chunk;
 					//chunkWorld.Generate();
 				}
