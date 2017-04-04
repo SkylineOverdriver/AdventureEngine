@@ -5,6 +5,28 @@ using UnityEngine;
 public class UIControl : MonoBehaviour {
 
 
+	public void generateUI(string baseUI)
+	{
+		switch(baseUI.ToLower())
+		{
+		case "pause":
+			break;
+		case "crafting":
+			break;
+		case "container":
+			break;
+		case "character_creation":
+			break;
+		case "inventory":
+			break;
+		case "crafting_synthesis":
+			break;
+		case "":
+			break;
+		default:
+			return;
+		}
+	}
 
 	// Use this for initialization
 	void Start () 

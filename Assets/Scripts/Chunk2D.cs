@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk2D {
+public class Chunk2D : MonoBehaviour{
 
 	/**Is the player in this chunk*/
 	public bool containsPlayer = false;
@@ -10,6 +10,8 @@ public class Chunk2D {
 	public bool generated = false;
 	/**The number of tiles (width & height) per chunk*/
 	public int chunkSize = 8;
+	/**The height of the current chunk*/
+	public int chunkHeight = 2;
 
 	// Use this for initialization
 	void Start() 
@@ -28,9 +30,9 @@ public class Chunk2D {
 	{
 		//TODO: Generates the world at the position
 
-		for(int x = 0; x < 16; x++)
+		for(int x = 0; x < chunkSize; x++)
 		{
-			for(int y = 0; y < 16; y++)
+			for(int y = 0; y < chunkSize; y++)
 			{
 				///Create Tile\\\
 				///
