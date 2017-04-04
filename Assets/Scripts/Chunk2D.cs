@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chunk2D : MonoBehaviour{
 
+	/**The tiles in this chunk*/
+	public GameObject[,,] tileGrid = new GameObject[0,0,0]; 
 	/**Is the player in this chunk*/
 	public bool containsPlayer = false;
 	/**Has this chunk generated yet*/
@@ -16,7 +18,7 @@ public class Chunk2D : MonoBehaviour{
 	// Use this for initialization
 	void Start() 
 	{
-		
+		tileGrid = new GameObject[chunkSize,chunkSize,chunkHeight];
 	}
 	
 	// Update is called once per frame
@@ -58,5 +60,11 @@ public class Chunk2D : MonoBehaviour{
 		{
 			containsPlayer = false;
 		}
+	}
+
+	/**Sets a tile at that positon*/
+	public void setTile(Tile id, IntPosition2D pos)
+	{
+		
 	}
 }
