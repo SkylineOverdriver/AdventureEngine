@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World : MonoBehaviour {
+public class World3D : MonoBehaviour {
 
 	/**The tile list*/
 	public WorldTile[] tileList = new WorldTile[32];
