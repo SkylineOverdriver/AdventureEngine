@@ -6,6 +6,8 @@ public class Chunk2D : MonoBehaviour{
 
 	/**The tiles in this chunk*/
 	public GameObject[,,] tileGrid = new GameObject[0,0,0]; 
+	/**The tile list that the gameobject's are loaded from*/
+	public GameObject[] tileList = new GameObject[16];
 	/**Is the player in this chunk*/
 	public bool containsPlayer = false;
 	/**Has this chunk generated yet*/
@@ -63,8 +65,13 @@ public class Chunk2D : MonoBehaviour{
 	}
 
 	/**Sets a tile at that positon*/
-	public void setTile(Tile id, IntPosition2D pos)
+	public void setTile(int id, IntPosition2D pos)
 	{
-		
+		if(tileGrid[pos.x, pos.y, pos.z] != null)
+			Destroy(tileGrid[pos.x, pos.y, pos.z]);
+
+		GameObject tileObj = Instantiate(tileList[id], this.transform);
+		Tile2D tile = tileObj.GetComponent<Tile2D>();
+		tile.tileID = id;
 	}
 }
