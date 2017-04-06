@@ -13,10 +13,16 @@ public class Entity2D : MonoBehaviour {
 	/**The south movement*/
 	public Vector2 movementSouth;
 
+	/**Can this entity move*/
+	public bool canMove = true;
+
 	/**This entities health*/
 	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
+	/**The entities strength*/
+	public EntityAttribute strength = new EntityAttribute(0f, Mathf.Infinity, 0f);
 
-	public EntityHostility hostility;
+	/**The hostility of this entity (Now an integer, 0 - 3, 0 = NONE, 1 = PEACFUL, 2 = NEUTRAL, 3 = HOSTILE)*/
+	public int hostility = 0;
 
 	// Use this for initialization
 	void Start () 
