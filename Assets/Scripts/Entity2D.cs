@@ -16,7 +16,7 @@ public class Entity2D : MonoBehaviour {
 	/**This entities health*/
 	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
 
-	public EntityHostility hostility
+    public EntityHostility hostility;
 
 	// Use this for initialization
 	void Start () 
