@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2D : Entity2D {
+public class Entity2DNPC : Entity2D {
 
 	// Use this for initialization
 	protected override void Start () {
