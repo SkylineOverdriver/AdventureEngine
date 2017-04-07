@@ -21,7 +21,7 @@ public class Entity2D : MonoBehaviour {
 	/**The entities strength*/
 	public EntityAttribute strength = new EntityAttribute(Mathf.NegativeInfinity, Mathf.Infinity, 0f);
 
-	/**The hostility of this entity (Now an integer, 0 - 3, 0 = NONE, 1 = PEACFUL, 2 = NEUTRAL, 3 = HOSTILE)*/
+	/**The hostility of this entity (Now an integer, 0 - 4, 0 = NONE, 1 = PEACFUL, 2 = NEUTRAL, 3 = HOSTILE, 4 = ALLIED)*/
 	public int hostility = 0;
 
 	// Use this for initialization
@@ -33,7 +33,12 @@ public class Entity2D : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+	}
+
+	public void Move(Vector2 direction)
+	{
+		transform.Translate (direction);
 	}
 }
 
@@ -104,8 +109,14 @@ public class EntityIntAttribute : EntityAttribute
 
 public enum EntityHostility
 {
+	/**None is entities that dont have AI*/
 	NONE,
+	/**Peaceful entites will never attack you. If you attack them, they will run away*/
 	PEACFUL,
+	/**Neutral entities will not attack you unless you attack them first or somehow provoke them*/
 	NEUTRAL,
+	/**Hostile Entities will attack you on sight. They will keep on attacking you until death*/
 	HOSTILE,
+	/**Allied npc's will follow you around and attack npc's/players/bosses that attack you*/
+	ALLIED,
 };
