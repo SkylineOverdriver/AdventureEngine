@@ -27,7 +27,7 @@ public class Entity2D : MonoBehaviour {
 	// Use this for initialization
 	protected virtual void Start () 
 	{
-			
+
 
 	}
 	
