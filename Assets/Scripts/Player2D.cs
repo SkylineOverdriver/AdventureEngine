@@ -13,8 +13,4 @@ public class Player2D : Entity2D {
 	void Update () {
 		
 	}
-	if (Input.GetKeyDown(KeyCode.Space))
-	{
-		
-	}
 }
