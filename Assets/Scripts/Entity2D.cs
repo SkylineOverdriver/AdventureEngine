@@ -27,7 +27,7 @@ public class Entity2D : MonoBehaviour {
 	// Use this for initialization
 	protected virtual void Start () 
 	{
-			
+
 
 	}
 	
@@ -52,7 +52,7 @@ public class EntityAttribute
 	/**The value of this attribute*/
 	public float value;
 
-
+	/**A empty constructor, sets everything to zero*/
 	public EntityAttribute()
 	{
 		min = 0f;
@@ -60,11 +60,20 @@ public class EntityAttribute
 		value = 0f;
 	}
 
+	/**Creates a new instance of the EntityAttribute class*/
 	public EntityAttribute(float minValue, float maxValue, float startValue)
 	{
 		min = minValue;
 		max = maxValue;
 		value = startValue;
+	}
+
+	/**Creates a new EntityAttribute with infinity min and max values*/
+	public EntityAttribute(float startvalue)
+	{
+		min = Mathf.NegativeInfinity;
+		max = Mathf.Infinity;
+		value = startvalue;
 	}
 
 	/**Gets the value of this attribute*/
