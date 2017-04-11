@@ -38,21 +38,21 @@ public class Player2D : Entity2D {
 		}
 	}
 	/**This subroutine is called for when the user is changing the UI control button*/
-	/**public void ChangeKey(string Direction)
+	public void changeKey(string direction)
 	{
-		if (Direction = "North")
+		if (direction == "North")
 		{
 			Input.GetKeyDown = keyNorth;
 		}
-		else if (Direction = "South")
+		else if (direction == "South")
 		{
 			Input.GetKeyDown = keySouth;
 		}
-		else if (Direction = "East")
+		else if (direction == "East")
 		{
 			Input.GetKeyDown = keyEast;
 		}
-		else if (Direction = "West")
+		else if (direction == "West")
 		{
 			Input.GetKeyDown = keyWest;
 		}
@@ -61,5 +61,4 @@ public class Player2D : Entity2D {
 			print ("Change Key Direction Error");
 		}
 	}
-	*/
 }
