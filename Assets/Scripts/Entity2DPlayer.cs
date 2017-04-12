@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2D : Entity2D
+public class Entity2DPlayer : Entity2DLiving
 {
 	/**These variables control the movement keys. They are changeable*/
 	public KeyCode keyNorth = KeyCode.W;
@@ -23,18 +23,15 @@ public class Player2D : Entity2D
 		{
 			Move(movementNorth);
 		}
-		else
-		if(Input.GetKeyDown(keySouth))
+		else if(Input.GetKeyDown(keySouth))
 		{
 			Move(movementSouth);
 		}
-		else
-		if(Input.GetKeyDown(keyEast))
+		else if(Input.GetKeyDown(keyEast))
 		{
 			Move(movementEast);
 		}
-		else
-		if(Input.GetKeyDown(keyWest))
+		else if(Input.GetKeyDown(keyWest))
 		{
 			Move(movementWest);
 		}

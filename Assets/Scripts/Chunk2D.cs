@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk2D : MonoBehaviour{
+public class Chunk2D : MonoBehaviour
+{
 
 	/**The tiles in this chunk*/
-	public GameObject[,,] tileGrid = new GameObject[0,0,0]; 
+	public Tile2D[,,] tileGrid = new Tile2D[0, 0, 0];
 	/**The tile list that the gameobject's are loaded from*/
 	public GameObject[] tileList = new GameObject[16];
 	/**Is the player in this chunk*/
@@ -18,13 +19,22 @@ public class Chunk2D : MonoBehaviour{
 	public int chunkHeight = 2;
 
 	// Use this for initialization
-	void Start() 
+	void Start()
 	{
-		tileGrid = new GameObject[chunkSize,chunkSize,chunkHeight];
+		for(int x = 0; x < chunkSize; x++)
+		{
+			for(int y = 0; y < chunkSize; y++)
+			{
+				for(int z = 0; z < chunkHeight; z++)
+				{
+					setTile(0, new IntPosition(x,y,z));
+				}
+			}
+		}
 	}
 	
 	// Update is called once per frame
-	void Update() 
+	void Update()
 	{
 		
 	}
@@ -65,7 +75,7 @@ public class Chunk2D : MonoBehaviour{
 	}
 
 	/**Sets a tile at that positon*/
-	public void setTile(int id, IntPosition2D pos)
+	public void setTile(int id, IntPosition pos)
 	{
 		if(tileGrid[pos.x, pos.y, pos.z] != null)
 			Destroy(tileGrid[pos.x, pos.y, pos.z]);
@@ -73,5 +83,10 @@ public class Chunk2D : MonoBehaviour{
 		GameObject tileObj = Instantiate(tileList[id], this.transform);
 		Tile2D tile = tileObj.GetComponent<Tile2D>();
 		tile.tileID = id;
+	}
+
+	public Tile2D getTile(int id, IntPosition pos)
+	{
+		return tileGrid[pos.x, pos.y, pos.z];
 	}
 }

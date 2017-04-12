@@ -16,19 +16,13 @@ public class Entity2D : MonoBehaviour {
 	/**Can this entity move*/
 	public bool canMove = true;
 
-	/**This entities health*/
-	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
-	/**The entities strength*/
-	public EntityAttribute strength = new EntityAttribute(Mathf.NegativeInfinity, Mathf.Infinity, 0f);
-
 	/**The hostility of this entity (Now an integer, 0 - 4, 0 = NONE, 1 = PEACFUL, 2 = NEUTRAL, 3 = HOSTILE, 4 = ALLIED)*/
 	public int hostility = 0;
 
 	// Use this for initialization
 	protected virtual void Start () 
 	{
-
-
+		
 	}
 	
 	// Update is called once per frame

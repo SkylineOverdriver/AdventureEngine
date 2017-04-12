@@ -61,7 +61,7 @@ public class EngineRegistry
 	//public Dictionary<string, Item> itemRegistry = new Dictionary<string, Item>();
 	/**The game registry, (For Worlds) (Broken)*/
 	//public Dictionary<string, World> worldRegistry = new Dictionary<string, World>();
-	/**The game registry, (For ENtities) (Broken)*/
+	/**The game registry, (For Entities) (Broken)*/
 	//public Dictionary<string, Entity> entityRegistry = new Dictionary<string, Entity>();
 
 	/**Registers an object from a pack*/
