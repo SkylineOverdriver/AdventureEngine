@@ -20,7 +20,7 @@ public class Player2D : Entity2D {
 	/** Update is called once per frame */
 	void Update() 
 	{
-		if (Input.GetKeyDown (keyNorth)) 
+		if (Input.GetKeyDown(keyNorth)) 
 		{
 			Move (movementNorth);
 		} 
@@ -28,37 +28,13 @@ public class Player2D : Entity2D {
 		{
 			Move (movementSouth);
 		} 
-		else if (Input.GetKeyDown (keyWest)) 
+		else if (Input.GetKeyDown (keyEest)) 
 		{
-			Move (movementWest);
+			Move (movementEest);
 		} 
-		else if (Input.GetKeyDown (keyEast)) 
+		else if (Input.GetKeyDown (keyWast)) 
 		{
-			Move (movementEast);
-		}
-	}
-	/**This subroutine is called for when the user is changing the UI control button*/
-	public void changeKey(string direction)
-	{
-		if (direction == "North")
-		{
-			Input.GetKeyDown = keyNorth;
-		}
-		else if (direction == "South")
-		{
-			Input.GetKeyDown = keySouth;
-		}
-		else if (direction == "East")
-		{
-			Input.GetKeyDown = keyEast;
-		}
-		else if (direction == "West")
-		{
-			Input.GetKeyDown = keyWest;
-		}
-		else
-		{
-			print ("Change Key Direction Error");
+			Move (movementWast);
 		}
 	}
 }
