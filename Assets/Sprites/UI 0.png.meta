@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 80a00fbe2b51e674b9ed32294ee3aba8
-timeCreated: 1491948058
+timeCreated: 1492118574
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -33,8 +33,8 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -46,7 +46,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -85,20 +85,20 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 32, y: 32, z: 32, w: 32}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: UI_0_Panel
       rect:
         serializedVersion: 2
-        x: 7
+        x: 8
         y: 184
         width: 64
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 32, y: 32, z: 32, w: 32}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
@@ -111,7 +111,7 @@ TextureImporter:
         height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 24, y: 24, z: 24, w: 24}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
@@ -119,12 +119,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 88
-        y: 217
+        y: 216
         width: 128
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 16, z: 16, w: 16}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2

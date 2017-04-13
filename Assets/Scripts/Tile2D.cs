@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile2D : MonoBehaviour {
-
+public class Tile2D : MonoBehaviour
+{
 	/**The ID of this tile*/
 	public int tileID = 0;
+	/**The position of this tile*/
+	public IntPosition tilePosition = new IntPosition();
 
 	/**Is an entity on this tile*/
 	public bool hasEntity = false;
@@ -35,15 +37,17 @@ public class Tile2D : MonoBehaviour {
 	/**Does this tile have extra data to define it (Can it do more than a normal tile can?)*/
 	public bool hasData = false;
 	/**The extra data on this tile*/
-	public TileData2D data = null;
+	//public TileData2D data = null;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 		
 	}
 }

@@ -2,43 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity2D : MonoBehaviour {
-
-	/**The east movement*/
-	public Vector2 movementEast;
-	/**The west movement*/
-	public Vector2 movementWest;
-	/**The north movement*/
-	public Vector2 movementNorth;
-	/**The south movement*/
-	public Vector2 movementSouth;
-
+public class Entity2D : MonoBehaviour
+{
 	/**Can this entity move*/
 	public bool canMove = true;
-
-	/**This entities health*/
-	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
-	/**The entities strength*/
-	public EntityAttribute strength = new EntityAttribute(Mathf.NegativeInfinity, Mathf.Infinity, 0f);
 
 	/**The hostility of this entity (Now an integer, 0 - 4, 0 = NONE, 1 = PEACFUL, 2 = NEUTRAL, 3 = HOSTILE, 4 = ALLIED)*/
 	public int hostility = 0;
 
 	// Use this for initialization
-	protected virtual void Start () 
+	protected virtual void Start()
 	{
-
-
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update()
+	{
 
 	}
 
+	/**Teleorts this entity*/
+	public void Teleport(IntPosition destination)
+	{
+		//transform.position = destination;
+	}
+
+	/**Moves this entity in the direction supplied*/
 	public void Move(Vector2 direction)
 	{
-		transform.Translate (direction);
+		transform.Translate(direction);
 	}
 }
 
@@ -102,7 +95,7 @@ public class EntityAttribute
 	/**Subtracts a value from the attribute*/
 	public void subtractValue(float amount)
 	{
-		value -=amount;
+		value -= amount;
 
 		if(value < min)
 		{
@@ -111,6 +104,7 @@ public class EntityAttribute
 	}
 }
 
+[System.Serializable]
 public class EntityIntAttribute : EntityAttribute
 {
 	
@@ -129,3 +123,34 @@ public enum EntityHostility
 	/**Allied npc's will follow you around and attack npc's/players/bosses that attack you*/
 	ALLIED,
 };
+
+public class EntityPosition
+{
+	/**The x position*/
+	public float x;
+	/**The y position*/
+	public float y;
+	/**The z position*/
+	public int z;
+
+	public EntityPosition()
+	{
+		x = 0f;
+		y = 0f;
+		z = 0;
+	}
+
+	public EntityPosition(float xPos, float yPos, int layer)
+	{
+		x = xPos;
+		y = yPos;
+		z = layer;
+	}
+
+	public EntityPosition(Vector3 position)
+	{
+		x = position.x;
+		y = position.y;
+		z = (int) position.z;
+	}
+}
