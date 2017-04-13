@@ -95,6 +95,20 @@ public class IntPosition
 	{
 		return z;
 	}
+
+	/**Adds two IntPositions togther*/
+	public static IntPosition operator +(IntPosition posA, IntPosition posB)
+	{
+		return new IntPosition(posA.x + posB.x, posA.y + posB.y, posA.z + posB.z);
+	}
+
+	/**Subtracts an IntPosition from another one*/
+	public static IntPosition operator -(IntPosition posA, IntPosition posB)
+	{
+		return new IntPosition(posA.x - posB.x, posA.y - posB.y, posA.z - posB.z);
+	}
+
+	//TODO: Explict & Implict operator converstions from and too Vector3
 }
 
 [System.Serializable]

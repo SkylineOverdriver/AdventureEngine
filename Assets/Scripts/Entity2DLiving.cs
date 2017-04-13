@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Entity2DLiving : Entity2D
 {
+	/**The north movement*/
+	public Vector2 movementNorth = new Vector2(0.0f, 0.1f);
+	/**The south movement*/
+	public Vector2 movementSouth = new Vector2(0.0f, -0.1f);
+	/**The east movement*/
+	public Vector2 movementEast = new Vector2(0.1f, 0.0f); 
+	/**The west movement*/
+	public Vector2 movementWest = new Vector2(-0.1f, 0.0f);
 
 	/**This entities health*/
 	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
@@ -18,16 +26,14 @@ public class Entity2DLiving : Entity2D
 	/**The entities knowlege (Wisdom & Intelect)*/
 	public EntityAttribute knowlege = new EntityAttribute(0f);
 
-
-
 	// Use this for initialization
-	void Start()
+	protected override void Start()
 	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update()
+	protected override void Update()
 	{
 		
 	}
