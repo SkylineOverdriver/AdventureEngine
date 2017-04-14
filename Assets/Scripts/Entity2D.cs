@@ -25,7 +25,7 @@ public class Entity2D : MonoBehaviour
 	/**Teleorts this entity*/
 	public void Teleport(IntPosition destination)
 	{
-		//transform.position = destination;
+		transform.position = destination;
 	}
 
 	/**Moves this entity in the direction supplied*/

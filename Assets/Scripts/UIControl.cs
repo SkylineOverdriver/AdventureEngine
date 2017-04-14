@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIControl : MonoBehaviour {
 
 
+	/**Generates a UI Screen*/
 	public void generateUI(string baseUI)
 	{
 		switch(baseUI.ToLower())
