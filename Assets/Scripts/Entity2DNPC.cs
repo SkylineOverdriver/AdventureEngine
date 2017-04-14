@@ -2,15 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity2DNPC : Entity2D {
-
+public class Entity2DNPC : Entity2D
+{
 	// Use this for initialization
-	protected override void Start () {
-		base.Start ();
+	protected override void Start()
+	{
+		base.Start();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update()
+	{
 		
 	}
+}
+
+
+public class EntityAI
+{
+	public List<EntityAITask> tasks;
+
+
+}
+
+public class EntityAITask
+{
+	
 }

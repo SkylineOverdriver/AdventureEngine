@@ -108,6 +108,17 @@ public class IntPosition
 		return new IntPosition(posA.x - posB.x, posA.y - posB.y, posA.z - posB.z);
 	}
 
+	/**Converts an IntPositon into a Vector3*/
+	public static implicit operator Vector3(IntPosition posA)
+	{
+		return new Vector3(posA.x, posA.y, posA.z);
+	}
+
+	/**Converts a Vector3 to an IntPosition*/
+	public static implicit operator IntPosition(Vector3 vecA)
+	{
+		return new IntPosition(Mathf.RoundToInt(vecA.x), Mathf.RoundToInt(vecA.y), Mathf.RoundToInt(vecA.z));
+	}
 	//TODO: Explict & Implict operator converstions from and too Vector3
 }
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk3D : MonoBehaviour {
-
+public class Chunk3D : MonoBehaviour
+{
 	/**The internal chunk that is this one*/
 	public Chunk chunk;
 	/**The tile to generate*/
@@ -16,12 +16,13 @@ public class Chunk3D : MonoBehaviour {
 	public MeshRenderer renderer;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update()
 	{
 		if(!generated)
 		{
@@ -58,7 +59,7 @@ public class Chunk3D : MonoBehaviour {
 				for(int z = 0; z < chunk.tiles.GetLength(2); z++)
 				{
 					GameObject tileObj = (GameObject) Instantiate(tile, this.transform);
-					tileObj.transform.position = new Vector3(x,y,z);
+					tileObj.transform.position = new Vector3(x, y, z);
 					tileObj.name = "Tile (" + x + "," + y + "," + z + ")";
 				}
 			}

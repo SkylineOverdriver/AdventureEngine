@@ -21,6 +21,7 @@ public class Chunk2D : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		tileGrid = new Tile2D[chunkSize, chunkSize, chunkHeight];
 		for(int x = 0; x < chunkSize; x++)
 		{
 			for(int y = 0; y < chunkSize; y++)
@@ -81,6 +82,7 @@ public class Chunk2D : MonoBehaviour
 			Destroy(tileGrid[pos.x, pos.y, pos.z]);
 
 		GameObject tileObj = Instantiate(tileList[id], this.transform);
+		tileObj.transform.position = (Vector3) pos + transform.position;
 		Tile2D tile = tileObj.GetComponent<Tile2D>();
 		tile.tileID = id;
 	}
