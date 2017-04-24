@@ -17,6 +17,8 @@ public class Chunk2D : MonoBehaviour
 	public int chunkSize = 8;
 	/**The height of the current chunk*/
 	public int chunkHeight = 2;
+	/**The position of this chunk*/
+	public IntPosition chunkPos = new IntPosition();
 
 	// Use this for initialization
 	void Start()
@@ -49,10 +51,10 @@ public class Chunk2D : MonoBehaviour
 		{
 			for(int y = 0; y < chunkSize; y++)
 			{
-				///Create Tile\\\
-				///
-
-
+				for(int z = 0; z < chunkHeight; z++)
+				{
+					setTile(0, new IntPosition(x,y,z));
+				}
 			}	
 		}
 	}
@@ -75,7 +77,7 @@ public class Chunk2D : MonoBehaviour
 		}
 	}
 
-	/**Sets a tile at that positon*/
+	/**Sets a tile at a position to another tile*/
 	public void setTile(int id, IntPosition pos)
 	{
 		if(tileGrid[pos.x, pos.y, pos.z] != null)
@@ -87,6 +89,7 @@ public class Chunk2D : MonoBehaviour
 		tile.tileID = id;
 	}
 
+	/**Returns a tile at that position*/
 	public Tile2D getTile(int id, IntPosition pos)
 	{
 		return tileGrid[pos.x, pos.y, pos.z];
