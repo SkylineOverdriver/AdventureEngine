@@ -33,6 +33,12 @@ public class Entity2D : MonoBehaviour
 	{
 		transform.Translate(direction);
 	}
+
+	/**Smothly moves this entity in the direction supplied, over time*/
+	public virtual void MoveSmooth(Vector2 direction, int frames)
+	{
+		
+	}
 }
 
 [System.Serializable]
