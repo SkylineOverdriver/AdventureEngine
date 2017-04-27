@@ -105,11 +105,4 @@ public class Chunk2D : MonoBehaviour
 		globalPosition.z = (globalPosition.z * Chunk2D.chunkSize) + localPosition.z;
 		return null;
 	}
-
-	/**Gets this object's hash code*/
-	public override int GetHashCode()
-	{
-		return chunkPos.x & chunkPos.y & chunkPos.z;
-		//return base.GetHashCode();
-	}
 }

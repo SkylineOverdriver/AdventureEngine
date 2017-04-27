@@ -51,9 +51,20 @@ public class World2D : MonoBehaviour
 	/**Returns a loaded tile*/
 	public Tile2D getTile(IntPosition position)
 	{
-		Chunk2D chunk;
+		Chunk2D chunk = null;
 		loadedChunks.TryGetValue(getTileChunkPos(position), out chunk);
-		return chunk.getTile(getTileLocalPos(position));
+		if(chunk != null)
+		{
+			return chunk.getTile(getTileLocalPos(position));
+		}
+		else
+		{
+			//Debug.Log("Chunk Not Found @ " + getTileChunkPos(position));
+			//Debug.Log("Chunk Exists: " + loadedChunks.ContainsKey(getTileChunkPos(position)));
+			//listChunks();
+			return null;
+		}
+
 	}
 
 	/**Returns the chunk position of the input tile*/
@@ -108,10 +119,20 @@ public class World2D : MonoBehaviour
 		chunk.chunkPos = position;
 		loadedChunks.Add(position, chunk);
 	}
+
+	//NOTE, THIS IS A DEBUG
+	/**Lists all the existing chunks*/
+	public void listChunks()
+	{
+		foreach(Chunk2D c in loadedChunks.Values)
+		{
+			Debug.Log("Chunk @ " + c.chunkPos);
+		}
+	}
 }
 
 [System.Serializable]
-public class IntPosition
+public class IntPosition : System.IEquatable<IntPosition>
 {
 	/**The position on the x axis*/
 	public int x;
@@ -215,6 +236,11 @@ public class IntPosition
 	{
 		//return base.GetHashCode();
 		return x & y & z;
+	}
+
+	public bool Equals(IntPosition obj)
+	{
+		return x == obj.x && y == obj.y && z == obj.z;
 	}
 
 	public override string ToString()
