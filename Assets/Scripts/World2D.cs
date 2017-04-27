@@ -27,7 +27,7 @@ public class World2D : MonoBehaviour
 
 	void Start()
 	{
-		
+		createChunk(new IntPosition(0,0,0));
 	}
 	
 	// Update is called once per frame
@@ -49,9 +49,11 @@ public class World2D : MonoBehaviour
 	}
 
 	/**Returns a loaded tile*/
-	public Tile getTile(IntPosition position)
+	public Tile2D getTile(IntPosition position)
 	{
-		return null;
+		Chunk2D chunk;
+		loadedChunks.TryGetValue(getTileChunkPos(position), out chunk);
+		return chunk.getTile(getTileLocalPos(position));
 	}
 
 	/**Returns the chunk position of the input tile*/
@@ -103,6 +105,7 @@ public class World2D : MonoBehaviour
 	public void createChunk(IntPosition position)
 	{
 		Chunk2D chunk = Instantiate(chunkObject, this.transform).GetComponent<Chunk2D>();
+		chunk.chunkPos = position;
 		loadedChunks.Add(position, chunk);
 	}
 }

@@ -12,6 +12,8 @@ public class Entity2DPlayer : Entity2DLiving
 	public KeyCode keyEast = KeyCode.D;
 	/**The west movement keycode*/
 	public KeyCode keyWest = KeyCode.A;
+	/**The keycode that makes the player move quickly*/
+	public KeyCode keyQuickMove = KeyCode.LeftShift;
 
 	/**The gender of the player (Integer, 0 - 1, 0 = Male, 1 = Female)*/
 	public int playerGender = 0;
@@ -34,24 +36,28 @@ public class Entity2DPlayer : Entity2DLiving
 	//Update is called once per frame
 	protected override void Update()
 	{
-		if(Input.GetKey(keyNorth))
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyNorth)) || Input.GetKeyDown(keyNorth))
 		{
 			Move(movementNorth);
+			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(0, 1, 0));
 		}
 
-		if(Input.GetKey(keySouth))
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keySouth)) || Input.GetKeyDown(keySouth))
 		{
 			Move(movementSouth);
+			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(0, -1, 0));
 		}
 
-		if(Input.GetKey(keyEast))
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyEast)) || Input.GetKeyDown(keyEast))
 		{
 			Move(movementEast);
+			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(1, 0, 0));
 		}
 
-		if(Input.GetKey(keyWest))
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyWest)) || Input.GetKeyDown(keyWest))
 		{
 			Move(movementWest);
+			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(-1, 0, 0));
 		}
 	}
 }
@@ -99,7 +105,7 @@ public enum PlayerClass : int
 	//Magic user, tends to have an excess amount of the aspect they represent and it causes
 	//debuffs/disadvantages
 	KNIGHT = 12,
-	//Also good with their aspect.  However other team members will struggle with aspect Knight has.
+	//Also good with their aspect.  However other team members will struggle with the aspect the Knight has.
 	ROUGE = 13,
 	//Sneak class that tends to be powerful if successful in sneak and other endeavours.
 	SAGE = 14,

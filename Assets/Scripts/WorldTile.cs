@@ -119,6 +119,12 @@ public class IntPosition
 	{
 		return new IntPosition(Mathf.RoundToInt(vecA.x), Mathf.RoundToInt(vecA.y), Mathf.RoundToInt(vecA.z));
 	}
+
+	/**Adds a vector3 to an intposition*/
+	public static IntPosition operator +(IntPosition posA, Vector3 vecA)
+	{
+		return new IntPosition(Mathf.RoundToInt(posA.x + vecA.x), Mathf.RoundToInt(posA.y + vecA.y), Mathf.RoundToInt(posA.z + vecA.z));
+	}
 	//TODO: Explict & Implict operator converstions from and too Vector3
 }
 

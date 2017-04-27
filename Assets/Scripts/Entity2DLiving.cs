@@ -38,8 +38,10 @@ public class Entity2DLiving : Entity2D
 		
 	}
 
+	/**Moves this entity in a direction with a certan number of units*/
 	public override void Move(Vector2 direction)
 	{
-		base.Move(direction * agility.getValue());
+		if(canMove)
+			base.Move(direction * agility.getValue());
 	}
 }

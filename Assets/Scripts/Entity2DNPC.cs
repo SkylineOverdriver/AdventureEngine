@@ -20,6 +20,7 @@ public class Entity2DNPC : Entity2DLiving
 
 public class EntityAI
 {
+	/**Thie entities AI*/
 	public List<EntityAITask> tasks;
 
 
