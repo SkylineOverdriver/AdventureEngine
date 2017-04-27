@@ -53,13 +53,13 @@ public class World3D : MonoBehaviour {
 		EngineControl.loadedRegistry = new EngineRegistry();
 		//Registry Test right here
 		EngineControl.loadedRegistry.register("base", "tile", "testGround", new Tile());
-		Tile tileAddition = EngineControl.loadedRegistry.retriveTile("base", "testGround");
+		Tile tileAddition = null;//EngineControl.loadedRegistry.retriveTile("base", "testGround");
 
 		for(int px = -5; px <= 5; px++)
 		{
 			for(int py = -5; py <= 5; py++)
 			{
-				GameObject tileInstance = Instantiate(EngineControl.genericObject, this.transform);
+				GameObject tileInstance = null;//Instantiate(EngineControl.genericObject, this.transform);
 				tileInstance.AddComponent<WorldTile>().tile = tileAddition;
 				tileInstance.transform.position = new Vector3(px, 0, py);
 				tileInstance.name = "Tile " + px + " " + py;
