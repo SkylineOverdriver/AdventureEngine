@@ -12,22 +12,40 @@ public class World2D : MonoBehaviour
 	/**The chunk gameobject, this is used to instantiate new chunks*/
 	public GameObject chunkObject;
 
+	/**The currently loaded world*/
+	public static World2D theWorld;
+
+	/**The current player in the world*/
+	public Entity2DPlayer thePlayer;
+
 	// Use this for initialization
-	void Start () 
+	void Awake() 
+	{
+		theWorld = this;
+		thePlayer = GameObject.Find("Player").GetComponent<Entity2DPlayer>();
+	}
+
+	void Start()
 	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () 
-	{
+	//void Update () 
+	//{
 		
-	}
+	//}
 
 	/**Creates a tile*/
 	public void createTile(string tileID)
 	{
 		
+	}
+
+	/**Get's the currently loaded world*/
+	public World2D getWorld()
+	{
+		return theWorld;
 	}
 
 	/**Returns a loaded tile*/
@@ -36,8 +54,47 @@ public class World2D : MonoBehaviour
 		return null;
 	}
 
+	/**Returns the chunk position of the input tile*/
+	public IntPosition getTileChunkPos(IntPosition globalPosition)
+	{
+		IntPosition chunkPosition = new IntPosition();
+
+		chunkPosition.x = Mathf.FloorToInt((float) globalPosition.x / Chunk2D.chunkSize);
+		chunkPosition.y = Mathf.FloorToInt((float) globalPosition.y / Chunk2D.chunkSize);
+		chunkPosition.z = Mathf.FloorToInt((float) globalPosition.z / Chunk2D.chunkSize);
+
+		return chunkPosition;
+	}
+
+	/**Returns the local position of the input tile*/
+	public IntPosition getTileLocalPos(IntPosition globalPosition)
+	{
+		IntPosition localPosition = new IntPosition();
+		IntPosition chunkPosition = new IntPosition();
+
+		chunkPosition = getTileChunkPos(globalPosition);
+
+		localPosition.x = globalPosition.x - (chunkPosition.x * Chunk2D.chunkSize);
+		localPosition.y = globalPosition.y - (chunkPosition.y * Chunk2D.chunkSize);
+		localPosition.z = globalPosition.z - (chunkPosition.z * Chunk2D.chunkSize);
+
+		return localPosition;
+	}
+
+	/**Returns a tile from its name*/
+	public Tile2D getTileIDFromName(string tileName)
+	{
+		foreach(GameObject go in tileList)
+		{
+			if(go.GetComponent<Tile2D>().name == tileName)
+				return go.GetComponent<Tile2D>();
+		}
+
+		return null;
+	}
+
 	/**Gets a loaded Tile's gameobject*/
-	public Tile getTileFromName(string tileName)
+	public Tile2D getTileFromName(string tileName)
 	{
 		return EngineControl.loadedRegistry.retriveTile("base", "test");
 	}

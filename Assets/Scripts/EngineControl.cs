@@ -19,13 +19,13 @@ public class EngineControl : MonoBehaviour {
 	/**The currently loaded StoryPack*/
 	public static StoryPack loadedPack;
 	/**A generic object to instantiate other objects onto*/
-	public static GameObject genericObject;
+	//public static GameObject genericObject;
 
 	// Use this for initialization
 	void Start () 
 	{
-		genericObject = Instantiate(new GameObject(), this.transform);
-		genericObject.name = "Game Object";
+		//genericObject = Instantiate(new GameObject(), this.transform);
+		//genericObject.name = "Game Object";
 	}
 	
 	// Update is called once per frame
@@ -153,10 +153,11 @@ public class EngineRegistry
 		
 	}
 
+	//TODO: Make this more stable, uses 2D tiles for now
 	/**Retrives a loaded tile*/
-	public Tile retriveTile(string pack, string name)
+	public Tile2D retriveTile(string pack, string name)
 	{
-		return (Tile) retrive(pack + ":tile:" + name);
+		return (Tile2D) retrive(pack + ":tile:" + name);
 	}
 
 	/**Retrives a loaded item*/

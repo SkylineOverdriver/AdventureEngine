@@ -29,7 +29,7 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Moves this entity in the direction supplied*/
-	public void Move(Vector2 direction)
+	public virtual void Move(Vector2 direction)
 	{
 		transform.Translate(direction);
 	}
