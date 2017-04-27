@@ -6,8 +6,6 @@ public class Chunk2D : MonoBehaviour
 {
 	/**The tiles in this chunk*/
 	public Tile2D[,,] tileGrid = new Tile2D[0, 0, 0];
-	/**The tile list that the gameobject's are loaded from*/
-	public GameObject[] tileList = new GameObject[16];
 	/**Is the player in this chunk*/
 	public bool containsPlayer = false;
 	/**Has this chunk generated yet*/
@@ -18,16 +16,23 @@ public class Chunk2D : MonoBehaviour
 	public int chunkHeight = 2;
 	/**The position of this chunk*/
 	public IntPosition chunkPos = new IntPosition();
+	/**Can entities move on non-integral increments on this chunk*/
+	public bool allowAbsoluteMovement = false;
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
 		//Set the chunk size according to the set values
 		tileGrid = new Tile2D[chunkSize, chunkSize, chunkHeight];
 		//Generate this chunk
 		Generate();
 	}
-	
+
+	void Start()
+	{
+		
+	}
+
 	// Update is called once per frame
 	void Update()
 	{
@@ -82,10 +87,11 @@ public class Chunk2D : MonoBehaviour
 		tileObj.transform.position = (Vector3) pos + transform.position;
 		Tile2D tile = tileObj.GetComponent<Tile2D>();
 		tile.tileID = id;
+		tile.tilePosition = pos;
 	}
 
 	/**Returns a tile at that position*/
-	public Tile2D getTile(int id, IntPosition pos)
+	public Tile2D getTile(IntPosition pos)
 	{
 		return tileGrid[pos.x, pos.y, pos.z];
 	}
@@ -98,5 +104,12 @@ public class Chunk2D : MonoBehaviour
 		globalPosition.y = (globalPosition.y * Chunk2D.chunkSize) + localPosition.y;
 		globalPosition.z = (globalPosition.z * Chunk2D.chunkSize) + localPosition.z;
 		return null;
+	}
+
+	/**Gets this object's hash code*/
+	public override int GetHashCode()
+	{
+		return chunkPos.x & chunkPos.y & chunkPos.z;
+		//return base.GetHashCode();
 	}
 }

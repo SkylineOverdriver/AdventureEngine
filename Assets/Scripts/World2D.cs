@@ -27,7 +27,7 @@ public class World2D : MonoBehaviour
 
 	void Start()
 	{
-		
+		createChunk(new IntPosition(0,0,0));
 	}
 	
 	// Update is called once per frame
@@ -49,9 +49,11 @@ public class World2D : MonoBehaviour
 	}
 
 	/**Returns a loaded tile*/
-	public Tile getTile(IntPosition position)
+	public Tile2D getTile(IntPosition position)
 	{
-		return null;
+		Chunk2D chunk;
+		loadedChunks.TryGetValue(getTileChunkPos(position), out chunk);
+		return chunk.getTile(getTileLocalPos(position));
 	}
 
 	/**Returns the chunk position of the input tile*/
@@ -103,6 +105,130 @@ public class World2D : MonoBehaviour
 	public void createChunk(IntPosition position)
 	{
 		Chunk2D chunk = Instantiate(chunkObject, this.transform).GetComponent<Chunk2D>();
+		chunk.chunkPos = position;
 		loadedChunks.Add(position, chunk);
+	}
+}
+
+[System.Serializable]
+public class IntPosition
+{
+	/**The position on the x axis*/
+	public int x;
+	/**The position on the y axis*/
+	public int y;
+	/**The position on the z axis*/
+	public int z;
+
+	/**Initalizes the IntPosition class with no values*/
+	public IntPosition()
+	{
+		x = 0;
+		y = 0;
+		z = 0;
+	}
+
+	/**Creates a new instance of the IntPosition class, with x, y, and z values*/
+	public IntPosition(int xVal, int yVal, int zVal)
+	{
+		x = xVal;
+		y = yVal;
+		z = zVal;
+	}
+
+	/**Sets the position values on all axes*/
+	public void setValues(int xVal, int yVal, int zVal)
+	{
+		x = xVal;
+		y = yVal;
+		z = zVal;
+	}
+
+	/**Sets the x value*/
+	public void setX(int xVal)
+	{
+		x = xVal;
+	}
+
+	/**Sets the y value*/
+	public void setY(int yVal)
+	{
+		y = yVal;
+	}
+
+	/**Sets the z value*/
+	public void setZ(int zVal)
+	{
+		z = zVal;
+	}
+
+	/**Returns the x value*/
+	public int getX()
+	{
+		return x;
+	}
+
+	/**Returns the y value*/
+	public int getY()
+	{
+		return y;
+	}
+
+	/**Returns the z value*/
+	public int getZ()
+	{
+		return z;
+	}
+
+	/**Adds two IntPositions togther*/
+	public static IntPosition operator +(IntPosition posA, IntPosition posB)
+	{
+		return new IntPosition(posA.x + posB.x, posA.y + posB.y, posA.z + posB.z);
+	}
+
+	/**Subtracts an IntPosition from another one*/
+	public static IntPosition operator -(IntPosition posA, IntPosition posB)
+	{
+		return new IntPosition(posA.x - posB.x, posA.y - posB.y, posA.z - posB.z);
+	}
+
+	/**Converts an IntPositon into a Vector3*/
+	public static implicit operator Vector3(IntPosition posA)
+	{
+		return new Vector3(posA.x, posA.y, posA.z);
+	}
+
+	/**Converts a Vector3 to an IntPosition*/
+	public static implicit operator IntPosition(Vector3 vecA)
+	{
+		return new IntPosition(Mathf.RoundToInt(vecA.x), Mathf.RoundToInt(vecA.y), Mathf.RoundToInt(vecA.z));
+	}
+
+	/**Adds a vector3 to an intposition*/
+	public static IntPosition operator +(IntPosition posA, Vector3 vecA)
+	{
+		return new IntPosition(Mathf.RoundToInt(posA.x + vecA.x), Mathf.RoundToInt(posA.y + vecA.y), Mathf.RoundToInt(posA.z + vecA.z));
+	}
+	//TODO: Explict & Implict operator converstions from and too Vector3
+
+	public override int GetHashCode()
+	{
+		//return base.GetHashCode();
+		return x & y & z;
+	}
+
+	public override string ToString()
+	{
+		return string.Format("(" + x + "," + y + "," + z + ")");
+	}
+}
+
+[System.Serializable]
+public class IntPosition2D : IntPosition
+{
+	public IntPosition2D(int xVal, int zVal)
+	{
+		x = xVal;
+		z = zVal;
 	}
 }
