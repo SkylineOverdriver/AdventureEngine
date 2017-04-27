@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Chunk2D : MonoBehaviour
 {
-
 	/**The tiles in this chunk*/
 	public Tile2D[,,] tileGrid = new Tile2D[0, 0, 0];
 	/**The tile list that the gameobject's are loaded from*/
@@ -14,24 +13,19 @@ public class Chunk2D : MonoBehaviour
 	/**Has this chunk generated yet*/
 	public bool generated = false;
 	/**The number of tiles (width & height) per chunk*/
-	public int chunkSize = 8;
+	public static int chunkSize = 8;
 	/**The height of the current chunk*/
 	public int chunkHeight = 2;
+	/**The position of this chunk*/
+	public IntPosition chunkPos = new IntPosition();
 
 	// Use this for initialization
 	void Start()
 	{
+		//Set the chunk size according to the set values
 		tileGrid = new Tile2D[chunkSize, chunkSize, chunkHeight];
-		for(int x = 0; x < chunkSize; x++)
-		{
-			for(int y = 0; y < chunkSize; y++)
-			{
-				for(int z = 0; z < chunkHeight; z++)
-				{
-					setTile(0, new IntPosition(x,y,z));
-				}
-			}
-		}
+		//Generate this chunk
+		Generate();
 	}
 	
 	// Update is called once per frame
@@ -49,10 +43,13 @@ public class Chunk2D : MonoBehaviour
 		{
 			for(int y = 0; y < chunkSize; y++)
 			{
-				///Create Tile\\\
-				///
+				/*for(int z = 0; z < chunkHeight; z++)
+				{
+					setTile(1, new IntPosition(x,y,z));
+				}*/
 
-
+				setTile(1, new IntPosition(x,y,0));
+				setTile(0, new IntPosition(x,y,1));
 			}	
 		}
 	}
@@ -75,20 +72,31 @@ public class Chunk2D : MonoBehaviour
 		}
 	}
 
-	/**Sets a tile at that positon*/
+	/**Sets a tile at a position to another tile*/
 	public void setTile(int id, IntPosition pos)
 	{
 		if(tileGrid[pos.x, pos.y, pos.z] != null)
 			Destroy(tileGrid[pos.x, pos.y, pos.z]);
 
-		GameObject tileObj = Instantiate(tileList[id], this.transform);
+		GameObject tileObj = Instantiate(World2D.theWorld.tileList[id], this.transform);
 		tileObj.transform.position = (Vector3) pos + transform.position;
 		Tile2D tile = tileObj.GetComponent<Tile2D>();
 		tile.tileID = id;
 	}
 
+	/**Returns a tile at that position*/
 	public Tile2D getTile(int id, IntPosition pos)
 	{
 		return tileGrid[pos.x, pos.y, pos.z];
+	}
+
+	/**Returns the globall position of the input tile*/
+	public IntPosition getTileGlobalPos(IntPosition localPosition)
+	{
+		IntPosition globalPosition = new IntPosition();
+		globalPosition.x = (globalPosition.x * Chunk2D.chunkSize) + localPosition.x;
+		globalPosition.y = (globalPosition.y * Chunk2D.chunkSize) + localPosition.y;
+		globalPosition.z = (globalPosition.z * Chunk2D.chunkSize) + localPosition.z;
+		return null;
 	}
 }

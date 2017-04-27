@@ -11,6 +11,8 @@ public class Tile2D : MonoBehaviour
 
 	/**Is an entity on this tile*/
 	public bool hasEntity = false;
+	/**The entity on this tile (Null of no entity)*/
+	public Entity2D entity = null;
 
 	/**Can entities move through this tile (solid?)*/
 	public bool solidAll = true;
@@ -28,6 +30,9 @@ public class Tile2D : MonoBehaviour
 	public bool solidEast = true;
 	/**Is the west side of this tile solid*/
 	public bool solidWest = true;
+
+	/**Is this tile a floor tile (Renders one layer down)*/
+	public bool isFloor = false;
 
 	/**Can this tile hurt enemies or players*/
 	public bool hurtEntities = false;
