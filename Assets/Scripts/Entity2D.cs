@@ -39,6 +39,18 @@ public class Entity2D : MonoBehaviour
 	{
 		
 	}
+
+	/**Called when this entity interacts with another entity*/
+	public virtual void OnInteract(Entity2D reciver)
+	{
+		
+	}
+
+	/**Called when this entity is interacted with*/
+	public virtual void OnInteracted(Entity2D sender)
+	{
+		
+	}
 }
 
 [System.Serializable]
@@ -130,6 +142,7 @@ public enum EntityHostility
 	ALLIED,
 };
 
+[System.Serializable]
 public class EntityPosition
 {
 	/**The x position*/
