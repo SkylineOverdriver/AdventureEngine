@@ -26,6 +26,9 @@ public class Entity2DLiving : Entity2D
 	/**The entities knowlege (Wisdom & Intelect)*/
 	public EntityAttribute knowlege = new EntityAttribute(1f);
 
+	/**Is this living entity dead*/
+	public bool isDead = false;
+
 	// Use this for initialization
 	protected override void Start()
 	{
@@ -43,5 +46,26 @@ public class Entity2DLiving : Entity2D
 	{
 		if(canMove)
 			base.Move(direction * agility.getValue());
+	}
+
+	public virtual void addHealth(float amount)
+	{
+		health.addValue(amount);
+	}
+
+	public virtual void removeHealth(float amount)
+	{
+		health.subtractValue(amount);
+	}
+
+	public virtual void die()
+	{
+		isDead = true;
+		dropItems();
+	}
+
+	public virtual void dropItems()
+	{
+		//TODO: Put item dropping code here
 	}
 }
