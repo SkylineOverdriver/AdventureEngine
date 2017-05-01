@@ -166,6 +166,7 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     value: 1
+  isDead: 0
   keyNorth: 119
   keySouth: 115
   keyEast: 100

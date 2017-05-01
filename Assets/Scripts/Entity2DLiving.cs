@@ -61,6 +61,7 @@ public class Entity2DLiving : Entity2D
 	public virtual void die()
 	{
 		isDead = true;
+		this.enabled = false;
 		dropItems();
 	}
 
