@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIDesignerPropertyEditField : UIDesignerProperty
 {
+	[System.Obsolete("Use the type on the field value instead")]
 	/**The type that this edit field is*/
 	public System.Type editType;
 	/**The inputfield that's text is gotten fron when activate() is called*/
@@ -17,9 +18,26 @@ public class UIDesignerPropertyEditField : UIDesignerProperty
 	{
 		if(field.FieldType == typeof(int))
 		{
-			field.SetValue(baseDesigner.selectedObject, field);	
+			int returnVal;
+			int.TryParse(inputBase.text, out returnVal);
+			value = returnVal;
 		}
-
+		else if(field.FieldType == typeof(float))
+		{
+			float returnVal;
+			float.TryParse(inputBase.text, out returnVal);
+			value = returnVal;
+		}
+		else if(field.FieldType == typeof(string))
+		{
+			value = inputBase.text;
+		}
+		else if(field.FieldType == typeof(byte))
+		{
+			byte returnVal;
+			byte.TryParse(inputBase.text, out returnVal);
+			value = returnVal;
+		}
 	}
 
 }

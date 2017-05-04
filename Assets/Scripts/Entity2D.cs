@@ -122,6 +122,17 @@ public class EntityAttribute
 			value = min;
 		}
 	}
+
+	public override string ToString()
+	{
+		if(min == float.MinValue && max == float.MaxValue)
+			return value.ToString();
+		else if(min == 0)
+			return value + "/" + max;
+		else
+			return "(" + min + ", " + value + ", " + max + ")";
+		
+	}
 }
 
 [System.Serializable]
