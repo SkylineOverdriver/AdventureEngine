@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224988664352654296}
   - component: {fileID: 114471519479462004}
+  - component: {fileID: 114956104292100190}
   m_Layer: 5
   m_Name: Property Filler
   m_TagString: Untagged
@@ -144,6 +145,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name
+--- !u!114 &114956104292100190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1682325897048844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 200
+  m_MinHeight: 60
+  m_PreferredWidth: 200
+  m_PreferredHeight: 60
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
 --- !u!222 &222844797719830014
 CanvasRenderer:
   m_ObjectHideFlags: 1

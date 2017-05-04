@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224975094730536006}
   - component: {fileID: 114692838752404054}
+  - component: {fileID: 114731572159443096}
   m_Layer: 5
   m_Name: Property Edit Field
   m_TagString: Untagged
@@ -244,7 +245,26 @@ MonoBehaviour:
   propertyDisplayName: 
   propertyNameText: {fileID: 114604133169943514}
   baseDesigner: {fileID: 0}
+  behaviour: {fileID: 0}
   inputBase: {fileID: 0}
+--- !u!114 &114731572159443096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1526891964969860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 200
+  m_MinHeight: 60
+  m_PreferredWidth: 200
+  m_PreferredHeight: 60
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
 --- !u!114 &114817042577919728
 MonoBehaviour:
   m_ObjectHideFlags: 1

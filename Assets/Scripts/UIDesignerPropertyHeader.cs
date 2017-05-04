@@ -5,7 +5,10 @@ using System.Reflection;
 
 public class UIDesignerPropertyHeader : UIDesignerProperty 
 {
-
+	public override void Start()
+	{
+		propertyNameText.text = propertyDisplayName;
+	}
 
 	/**Button command for displaying the help menu*/
 	public virtual void helpActivate()
@@ -46,5 +49,12 @@ public class UIDesignerPropertyHeader : UIDesignerProperty
 	public override void activate()
 	{
 		base.activate();
+	}
+
+	public override void initialize(EngineDesigner designBase, FieldInfo fieldBase, MonoBehaviour monoBehaviour)
+	{
+		baseDesigner = designBase;
+		field = fieldBase;
+		behaviour = monoBehaviour;
 	}
 }

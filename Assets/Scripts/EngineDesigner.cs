@@ -15,8 +15,10 @@ public class EngineDesigner : MonoBehaviour {
 	/**The fields on the behaviours*/
 	public FieldInfo[] selectedBehavioursFields;
 
+	/**An empty selectable object*/
+	public GameObject objectSelectableEmpty;
 	/**The objects that can be selected*/
-	public GameObject[] objectList;
+	public List<GameObject> objectList = new List<GameObject>();
 
 	/**How to search all objects, 1 is */
 	public int searchType = 0;
@@ -71,6 +73,24 @@ public class EngineDesigner : MonoBehaviour {
 		
 	}
 
+	public void gotoMenu()
+	{
+		UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Designer");
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+	}
+
+	/**Called when the search box is edited*/
+	public void onSearchChanged()
+	{
+		foreach(GameObject gameObject in objectList)
+		{
+			Destroy(gameObject);
+		}
+
+		object foundObject = EngineControl.loadedRegistry.retrive("");
+	}
+
+	/**Called when a different object is selected*/
 	public void onSelectionChanged()
 	{
 		destroyPropertyStack();
@@ -78,7 +98,7 @@ public class EngineDesigner : MonoBehaviour {
 		createPropertyStack();
 	}
 
-	public void OnGUI2()
+	/*public void OnGUI()
 	{
 		System.Type type = selectedBehavior.GetType();
 		FieldInfo[] fields = type.GetFields();
@@ -150,7 +170,7 @@ public class EngineDesigner : MonoBehaviour {
 				else if(field.FieldType == typeof(ushort))
 				{
 
-				}*/
+				}*//*
 				else if(field.FieldType == typeof(Vector2))
 				{
 					Vector2 vec2 = (Vector2) field.GetValue(monoBehaviour);
@@ -181,7 +201,7 @@ public class EngineDesigner : MonoBehaviour {
 				}
 			}
 		}
-	}
+	}*/
 
 	/**Creates the property stack, Doesn't know if it already exists*/
 	public void createPropertyStack()
@@ -283,9 +303,9 @@ public class EngineDesigner : MonoBehaviour {
 		}
 
 		//Set that property editor's values and position
-		propertyEditor.initalize(this, info, monoBehaviour);
-		propertyEditor.propertyDisplayName = info.Name;
-		propertyEditorObj.GetComponent<RectTransform>().Translate(new Vector2(0, propertyStackIndex * propertyStackSpacing));//.transform.position.Set(0, propertyStackIndex * propertyStackSpacing, 0);
+		propertyEditor.initialize(this, info, monoBehaviour);
+		//propertyEditor.propertyDisplayName = info.Name; <- Moved to initialize
+		propertyEditorObj.GetComponent<RectTransform>().Translate(new Vector2(0, propertyStackIndex * -propertyStackSpacing));
 		propertyStackIndex++;
 	}
 

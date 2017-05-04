@@ -25,6 +25,8 @@ public class UIDesignerProperty : MonoBehaviour
 			Destroy(this.gameObject); 
 			return;
 		}
+			
+		propertyNameText.text = field.Name;
 	}
 
 	/**Called whenever the field info is changed*/
@@ -36,11 +38,12 @@ public class UIDesignerProperty : MonoBehaviour
 	}
 
 	/**This needs to be called whenever this is created or else the object wil break*/
-	public virtual void initalize(EngineDesigner designBase, FieldInfo fieldBase, MonoBehaviour monoBehaviour)
+	public virtual void initialize(EngineDesigner designBase, FieldInfo fieldBase, MonoBehaviour monoBehaviour)
 	{
 		baseDesigner = designBase;
 		field = fieldBase;
 		behaviour = monoBehaviour;
+		propertyNameText.text = fieldBase.Name;
 	}
 
 	/**Called whenever this property editor is updated*/
