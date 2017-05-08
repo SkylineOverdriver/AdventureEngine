@@ -138,34 +138,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   hostility: 0
-  movementNorth: {x: 0, y: 0.1}
-  movementSouth: {x: 0, y: -0.1}
-  movementEast: {x: 0.1, y: 0}
-  movementWest: {x: -0.1, y: 0}
+  movementNorth: {x: 0, y: 1}
+  movementSouth: {x: 0, y: -1}
+  movementEast: {x: 1, y: 0}
+  movementWest: {x: -1, y: 0}
   health:
     min: 0
     max: 100
     value: 100
+    useIntegers: 0
   strength:
-    min: -Infinity
-    max: Infinity
+    min: 0
+    max: 20
     value: 1
+    useIntegers: 0
   agility:
-    min: -Infinity
-    max: Infinity
+    min: 0
+    max: 20
     value: 1
+    useIntegers: 0
   charm:
-    min: -Infinity
-    max: Infinity
+    min: 0
+    max: 20
     value: 1
+    useIntegers: 0
   mana:
     min: 0
     max: 20
     value: 20
+    useIntegers: 0
   knowlege:
-    min: -Infinity
-    max: Infinity
+    min: 0
+    max: 20
     value: 1
+    useIntegers: 0
   isDead: 0
   keyNorth: 119
   keySouth: 115

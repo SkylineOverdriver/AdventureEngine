@@ -11,7 +11,6 @@ public class Menu : MonoBehaviour
 	-ADD A BACKGROUND
 	*/
 
-
 	public bool isMainMenu;
 	public bool isOptionsMenu;
 	public Canvas mainCanvas;
@@ -22,7 +21,6 @@ public class Menu : MonoBehaviour
 	{
 		optionsCanvas.enabled = false;
 	}
-
 
 	public void optionsOn()
 	{

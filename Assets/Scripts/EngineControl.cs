@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EngineControl : MonoBehaviour {
 
@@ -145,6 +146,17 @@ public class EngineRegistry
 		object retrivedObject = null;
 		registry.TryGetValue(pack + ":" + name, out retrivedObject);
 		return retrivedObject;
+	}
+
+	/**Retrives an array of objects using a search parameter*/
+	public List<object> retriveSearch(string search)
+	{
+		//TODO: Make this search command work
+		List<object> retrivedObjects = new List<object>();
+		//Use var because the type is too long to type out
+		var dictIterator = from x in registry where x.Key.Contains("") select x;
+		//retrivedObjects = dictIterator.;
+		return retrivedObjects;
 	}
 
 	/**Loads this registry into the game*/

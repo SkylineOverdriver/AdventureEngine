@@ -29,6 +29,9 @@ public class Entity2DLiving : Entity2D
 	/**Is this living entity dead*/
 	public bool isDead = false;
 
+	/**The effects on this entity*/
+	public List<EntityEffect> activeEffects;
+
 	// Use this for initialization
 	protected override void Start()
 	{
@@ -69,4 +72,10 @@ public class Entity2DLiving : Entity2D
 	{
 		//TODO: Put item dropping code here
 	}
+}
+
+[System.Serializable]
+public class EntityEffect
+{
+	
 }

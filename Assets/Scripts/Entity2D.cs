@@ -89,6 +89,14 @@ public class EntityAttribute
 		value = startvalue;
 	}
 
+	/**Makes this attriutes min and max true infinity*/
+	public EntityAttribute setTrueInfiniteCaps()
+	{
+		min = Mathf.NegativeInfinity;
+		max = Mathf.Infinity;
+		return this;
+	}
+
 	/**Gets the value of this attribute*/
 	public float getValue()
 	{
