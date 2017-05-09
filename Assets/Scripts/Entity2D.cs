@@ -63,6 +63,8 @@ public class EntityAttribute
 	public float max;
 	/**The value of this attribute*/
 	public float value;
+	/**Should integers be used instead of floats*/
+	public bool useIntegers = false;
 
 	/**A empty constructor, sets everything to zero*/
 	public EntityAttribute()
@@ -83,9 +85,17 @@ public class EntityAttribute
 	/**Creates a new EntityAttribute with infinity min and max values*/
 	public EntityAttribute(float startvalue)
 	{
+		min = float.MinValue;//Mathf.NegativeInfinity;
+		max = float.MaxValue;//Mathf.Infinity;
+		value = startvalue;
+	}
+
+	/**Makes this attriutes min and max true infinity*/
+	public EntityAttribute setTrueInfiniteCaps()
+	{
 		min = Mathf.NegativeInfinity;
 		max = Mathf.Infinity;
-		value = startvalue;
+		return this;
 	}
 
 	/**Gets the value of this attribute*/
@@ -121,12 +131,52 @@ public class EntityAttribute
 			value = min;
 		}
 	}
+
+	public override string ToString()
+	{
+		if(min == float.MinValue && max == float.MaxValue)
+			return value.ToString();
+		else if(min == 0)
+			return value + "/" + max;
+		else
+			return "(" + min + ", " + value + ", " + max + ")";
+		
+	}
 }
 
 [System.Serializable]
 public class EntityIntAttribute : EntityAttribute
 {
-	
+	/**The minimum value of this attribute*/
+	public int min;
+	/**The maximum value of this attribute*/
+	public int max;
+	/**The value of this attribute*/
+	public int value;
+
+	/**A empty constructor, sets everything to zero*/
+	public EntityIntAttribute()
+	{
+		min = 0;
+		max = 0;
+		value = 0;
+	}
+
+	/**Creates a new instance of the EntityAttribute class*/
+	public EntityIntAttribute(int minValue, int maxValue, int startValue) : base(minValue, maxValue, startValue)
+	{
+		min = minValue;
+		max = maxValue;
+		value = startValue;
+	}
+
+	/**Creates a new EntityAttribute with infinity min and max values*/
+	public EntityIntAttribute(int startvalue)
+	{
+		min = int.MinValue;//Mathf.NegativeInfinity;
+		max = int.MaxValue;//Mathf.Infinity;
+		value = startvalue;
+	}
 }
 
 public enum EntityHostility

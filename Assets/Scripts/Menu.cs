@@ -11,7 +11,6 @@ public class Menu : MonoBehaviour
 	-ADD A BACKGROUND
 	*/
 
-
 	public bool isMainMenu;
 	public bool isOptionsMenu;
 	public Canvas mainCanvas;
@@ -22,7 +21,6 @@ public class Menu : MonoBehaviour
 	{
 		optionsCanvas.enabled = false;
 	}
-
 
 	public void optionsOn()
 	{
@@ -38,6 +36,13 @@ public class Menu : MonoBehaviour
 
 	public void loadOn()
 	{
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene(1);
+	}
+
+	/**Loads a scene when activated*/
+	public void loadScene(string name)
+	{
+		SceneManager.UnloadSceneAsync("Menu");
+		SceneManager.LoadScene(name);
 	}
 }

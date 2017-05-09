@@ -16,18 +16,21 @@ public class Entity2DLiving : Entity2D
 	/**This entities health*/
 	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
 	/**The entities strength*/
-	public EntityAttribute strength = new EntityAttribute(1f);
+	public EntityAttribute strength = new EntityAttribute(0f, 20f, 1f);
 	/**The entities agility*/
-	public EntityAttribute agility = new EntityAttribute(1f);
+	public EntityAttribute agility = new EntityAttribute(0f, 20f, 1f);
 	/**The entities charm (Social Skills)*/
-	public EntityAttribute charm = new EntityAttribute(1f);
+	public EntityAttribute charm = new EntityAttribute(0f, 20f, 1f);
 	/**The entities mana (Magical */
 	public EntityAttribute mana = new EntityAttribute(0f, 20f, 20f);
 	/**The entities knowlege (Wisdom & Intelect)*/
-	public EntityAttribute knowlege = new EntityAttribute(1f);
+	public EntityAttribute knowlege = new EntityAttribute(0f, 20f, 1f);
 
 	/**Is this living entity dead*/
 	public bool isDead = false;
+
+	/**The effects on this entity*/
+	public List<EntityEffect> activeEffects;
 
 	// Use this for initialization
 	protected override void Start()
@@ -69,4 +72,10 @@ public class Entity2DLiving : Entity2D
 	{
 		//TODO: Put item dropping code here
 	}
+}
+
+[System.Serializable]
+public class EntityEffect
+{
+	
 }
