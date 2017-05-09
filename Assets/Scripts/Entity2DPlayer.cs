@@ -15,9 +15,6 @@ public class Entity2DPlayer : Entity2DLiving
 	/**The keycode that makes the player move quickly*/
 	public KeyCode keyQuickMove = KeyCode.LeftShift;
 
-	/**The gender of the player (Integer, 0 - 1, 0 = Male, 1 = Female)*/
-	public int playerGender = 0;
-
 	/**The class of this player (Integer, 0 - 15, 0 = PAGE, 1 = PRINCE, 2 = BARD, 3 = SUMMONER, 4 = KING,
 	 5 = MAID, 6 = SYLPH, 7 = WITCH, 8 = MARTYR, 9 = QUEEN, 10 = HEIR, 11 = MAGE, 12 = KNIGHT, 13 = ROUGE
 	 14 = SAGE, 15 = HOST)*/
@@ -63,7 +60,7 @@ public class Entity2DPlayer : Entity2DLiving
 }
 
 [System.Serializable]
-public enum PlayerClass : int
+public enum PlayerClass : byte
 {
 
 	/* MALE */
@@ -115,7 +112,7 @@ public enum PlayerClass : int
 };
 
 [System.Serializable]
-public enum PlayerAspect : int
+public enum PlayerAspect : byte
 {
 	TIME = 0,
 	//Ability to control time and endings

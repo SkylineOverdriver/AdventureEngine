@@ -11,17 +11,29 @@ public class Menu : MonoBehaviour
 	-ADD A BACKGROUND
 	*/
 
+	/*
+		TODO:
+		|==========================================================|
+		 Please put meaningful comments on any variabled or methods
+		|==========================================================|
+	*/
+
 	public bool isMainMenu;
+
 	public bool isOptionsMenu;
+
 	public Canvas mainCanvas;
+
 	public Canvas optionsCanvas;
 
 
 	void Awake()
 	{
+		//TODO: This canvas can be disabled on start in the editor instead of in code...
 		optionsCanvas.enabled = false;
 	}
 
+	//This is good, but could be made into a better method
 	public void optionsOn()
 	{
 		optionsCanvas.enabled = true;

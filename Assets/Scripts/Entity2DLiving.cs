@@ -13,6 +13,9 @@ public class Entity2DLiving : Entity2D
 	/**The west movement*/
 	public Vector2 movementWest = new Vector2(-0.1f, 0.0f);
 
+	/**The gender of the player*/
+	public EntityGender entityGender = 0;
+
 	/**This entities health*/
 	public EntityAttribute health = new EntityAttribute(0f, 100f, 100f);
 	/**The entities strength*/
@@ -31,6 +34,9 @@ public class Entity2DLiving : Entity2D
 
 	/**The effects on this entity*/
 	public List<EntityEffect> activeEffects;
+
+	/**This entitie's inventory*/
+	public InventoryEntityLiving entityInventory;
 
 	// Use this for initialization
 	protected override void Start()
@@ -51,11 +57,13 @@ public class Entity2DLiving : Entity2D
 			base.Move(direction * agility.getValue());
 	}
 
+	/**Heals the Entity*/
 	public virtual void addHealth(float amount)
 	{
 		health.addValue(amount);
 	}
 
+	/**Hurts the Entity*/
 	public virtual void removeHealth(float amount)
 	{
 		health.subtractValue(amount);
@@ -73,9 +81,18 @@ public class Entity2DLiving : Entity2D
 		//TODO: Put item dropping code here
 	}
 }
+	
+public enum EntityGender : byte
+{
+	NONE = 0,
+	MALE = 1,
+	FEMALE = 2,
+	OTHER = 3,
+	TRANS = 4,
+};
 
 [System.Serializable]
 public class EntityEffect
 {
-	
+
 }

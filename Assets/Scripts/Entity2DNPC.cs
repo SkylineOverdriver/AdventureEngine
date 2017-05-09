@@ -17,7 +17,7 @@ public class Entity2DNPC : Entity2DLiving
 	}
 }
 
-
+[System.Serializable]
 public class EntityAI
 {
 	/**Thie entities AI*/
@@ -26,6 +26,7 @@ public class EntityAI
 
 }
 
+[System.Serializable]
 public class EntityAITask
 {
 	
