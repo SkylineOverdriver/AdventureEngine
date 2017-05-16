@@ -121,18 +121,6 @@ public class AttributeModifiyer
 	public float attributeValue = 0.0f;
 	/**The type of modifiyer that this is*/
 	public AttributeModType modifiyerType;
-
-	public AttributeModifiyer()
-	{
-		
-	}
-
-	public AttributeModifiyer(string name, float value, AttributeModType type)
-	{
-		attributeName = name;
-		attributeValue = value;
-		modifiyerType = type;
-	}
 }
 
 public enum AttributeModType : byte
@@ -140,5 +128,4 @@ public enum AttributeModType : byte
 	ADD = 0,
 	PERCENT_ADD = 1,
 	PERCENT_MULTIPLY = 2,
-	SET = 3,
 }
