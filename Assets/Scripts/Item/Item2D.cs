@@ -23,7 +23,7 @@ public class Item2D : MonoBehaviour
 	public virtual void itemUseStart(KeyCode useButton) {}
 		
 	/**Called whenever this item is being used*/
-	public virtual void itemUse(KeyCode useButtonn) {}
+	public virtual void itemUse(KeyCode useButton) {}
 
 	/**Called whenever this item has finished being used*/
 	public virtual void itemUseEnd(KeyCode useButton) {}
@@ -121,6 +121,18 @@ public class AttributeModifiyer
 	public float attributeValue = 0.0f;
 	/**The type of modifiyer that this is*/
 	public AttributeModType modifiyerType;
+
+	public AttributeModifiyer(string name, float amount, AttributeModType type)
+	{
+		attributeName = name;
+		attributeValue = amount;
+		modifiyerType = type;
+	}
+
+	public void getModType()
+	{
+		//TODO: Add code here
+	}
 }
 
 public enum AttributeModType : byte

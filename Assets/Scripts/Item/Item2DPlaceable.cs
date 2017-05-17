@@ -2,17 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item2DPlaceable : MonoBehaviour
+public class Item2DPlaceable : Item2DConsumable
 {
-	// Use this for initialization
-	void Start()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update()
-	{
-		
-	}
+	/**The tile to place when this item is used*/
+	public Tile2D placedTile;
 }

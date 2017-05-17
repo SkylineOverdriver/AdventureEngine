@@ -11,17 +11,18 @@ public class Entity2DNPC : Entity2DLiving
 	protected override void Start()
 	{
 		base.Start();
+		ai = new EntityAI();
 	}
 	
 	// Update is called once per frame
 	protected override void Update()
 	{
-		
+		ai.advance();
 	}
 
 	public void OnTriggerEnter2D(Collider2D other)
 	{
-		
+		//TODO: Add Entity interaction
 	}
 }
 
@@ -29,23 +30,42 @@ public class Entity2DNPC : Entity2DLiving
 public class EntityAI
 {
 	/**Thie entities AI*/
-	public List<EntityAITask> tasks;
+	public List<EntityAITask> tasks = new List<EntityAITask>();
 
 	/**Which task is this AI currently on*/
 	public int currentTaskIndex = 0;
 
-	/***/
+	/**The value when the AI last started a task*/
+	public float lastTaskStartup = 0f;
+
+	/**Adds a taks to this AI's tasks*/
 	public void addTask(EntityAITask task)
 	{
 		tasks.Add(task);
 	}
 
+	/**Adds a patrol point to this AI movement points*/
+	public void addPatrolPoint(IntPosition position)
+	{
+		//TODO: Add patroling
+	}
+
 	/**Advenaces this entities AI to the next task*/
 	public void advance()
 	{
+		//Check the timer and compare to make sure the wait time is over
+		if(Time.time - lastTaskStartup >= tasks[currentTaskIndex].taskLength)
+		{
+			//Set the last task time to the current time
+			lastTaskStartup = Time.time;
 
+			//Run task code here
 
-		currentTaskIndex++;
+			currentTaskIndex++;
+		}
+
+		if(currentTaskIndex >= tasks.Count)
+			currentTaskIndex = 0;
 	}
 }
 
@@ -54,6 +74,21 @@ public class EntityAITask
 {
 	/**The task type, this defines what this entity will do*/
 	public AITaskType taskType;
+	/**How long this task will last for (In seconds)*/
+	public float taskLength = 0;
+	/**Has the condition for this task been met*/
+	public bool taskCondition = true;
+
+	public EntityAITask(AITaskType task)
+	{
+		taskType = task;
+	}
+
+	public EntityAITask(AITaskType task, float time)
+	{
+		taskType = task;
+		taskLength = time;
+	}
 
 }
 

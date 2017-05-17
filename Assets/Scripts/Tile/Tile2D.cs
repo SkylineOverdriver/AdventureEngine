@@ -11,7 +11,7 @@ public class Tile2D : MonoBehaviour
 
 	/**Is an entity on this tile*/
 	public bool hasEntity = false;
-	/**The entity on this tile (Null of no entity)*/
+	/**The entity on this tile (null if no entity)*/
 	public Entity2D entity = null;
 
 	/**Can entities move through this tile (solid?)*/

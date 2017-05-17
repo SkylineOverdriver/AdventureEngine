@@ -10,7 +10,9 @@ public class Entity2D : MonoBehaviour
 	/**The hostility of this entity (Now an integer, 0 - 4, 0 = NONE, 1 = PEACFUL, 2 = NEUTRAL, 3 = HOSTILE, 4 = ALLIED)*/
 	public EntityHostility hostility = 0;
 
-	public string entityName = "noName";
+	/**The name of this entity*/
+	public string entityName = "entity";
+
 	// Use this for initialization
 	protected virtual void Start()
 	{

@@ -77,6 +77,7 @@ public class Entity2DLiving : Entity2D
 		health.subtractValue(amount);
 	}
 
+	/**Called when this entity dies*/
 	public virtual void die()
 	{
 		isDead = true;
@@ -84,9 +85,23 @@ public class Entity2DLiving : Entity2D
 		dropItems();
 	}
 
+	/**Called when this entity dies or drops it's items*/
 	public virtual void dropItems()
 	{
 		//TODO: Put item dropping code here
+		//World2D.CreateEntity(new Entit2dItem);
+	}
+
+	/**Called to make this entity interact with the entity in fron of it*/
+	public virtual void interact()
+	{
+		
+	}
+
+	/**Called when this entity is interacted with*/
+	public virtual void onInteract()
+	{
+		
 	}
 }
 	

@@ -18,4 +18,9 @@ public class Item2DConsumable : Item2D
 	{
 		
 	}
+
+	public override void itemUse(KeyCode useButton)
+	{
+		base.itemUse(useButton);
+	}
 }

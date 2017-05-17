@@ -129,6 +129,13 @@ public class World2D : MonoBehaviour
 			Debug.Log("Chunk @ " + c.chunkPos);
 		}
 	}
+
+	/**Creates the entity*/
+	public void CreateEntity(Entity2D entity)
+	{
+		//TODO: Put entity creation code here
+		//Instantiate();
+	}
 }
 
 [System.Serializable]

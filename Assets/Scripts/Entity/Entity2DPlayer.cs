@@ -14,6 +14,8 @@ public class Entity2DPlayer : Entity2DLiving
 	public KeyCode keyWest = KeyCode.A;
 	/**The keycode that makes the player move quickly*/
 	public KeyCode keyQuickMove = KeyCode.LeftShift;
+	/**The keycode that the pplayer presses to interact with the entity at that direction*/
+	public KeyCode keyInteract = KeyCode.E;
 
 	/**The class of this player (Integer, 0 - 15, 0 = PAGE, 1 = PRINCE, 2 = BARD, 3 = SUMMONER, 4 = KING,
 	 5 = MAID, 6 = SYLPH, 7 = WITCH, 8 = MARTYR, 9 = QUEEN, 10 = HEIR, 11 = MAGE, 12 = KNIGHT, 13 = ROUGE
