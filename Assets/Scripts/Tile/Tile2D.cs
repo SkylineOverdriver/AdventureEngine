@@ -57,7 +57,7 @@ public class Tile2D : MonoBehaviour
 	}
 
 	/**Returns if this tile is movable*/
-	public void getMovability(TileDirection direction)
+	public void getMovability(ObjectDirection direction)
 	{
 		 
 	}
@@ -109,15 +109,3 @@ public class TileData2D
 		return (int) returnVal;
 	}
 }
-
-public enum TileDirection : byte
-{
-	EAST,
-	NORTH,
-	WEST,
-	SOUTH,
-	NORTH_EAST,
-	NORTH_WEST,
-	SOUTH_WEST,
-	SOUTH_EAST,
-};

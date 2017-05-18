@@ -24,6 +24,32 @@ public class Entity2DNPC : Entity2DLiving
 	{
 		//TODO: Add Entity interaction
 	}
+
+	/**Do the AI action for the task type*/
+	public void validateAIAction(AITaskType task)
+	{
+		switch(task)
+		{
+		case AITaskType.WAIT:
+			//Do  nothing, this is a wait command
+			break;
+		case AITaskType.MOVE:
+
+			break;
+		case AITaskType.TURN:
+
+			break;
+		case AITaskType.PATROL:
+
+			break;
+		case AITaskType.FOLLOW:
+
+			break;
+		default:
+			
+		break;
+		}
+	}
 }
 
 [System.Serializable]

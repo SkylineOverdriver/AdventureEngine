@@ -18,6 +18,9 @@ public class World2D : MonoBehaviour
 	/**The current player in the world*/
 	public Entity2DPlayer thePlayer;
 
+	/**The ui helper to update the up for the player*/
+	public TextUpdate playerUIHelper;
+
 	// Use this for initialization
 	void Awake() 
 	{
@@ -164,6 +167,14 @@ public class IntPosition : System.IEquatable<IntPosition>
 		z = zVal;
 	}
 
+	/**Creates a new instance of the IntPosition class, with x and y values, and a z value of 0*/
+	public IntPosition(int xVal, int yVal)
+	{
+		x = xVal;
+		y = yVal;
+		z = 0;
+	}
+
 	/**Sets the position values on all axes*/
 	public void setValues(int xVal, int yVal, int zVal)
 	{
@@ -232,12 +243,41 @@ public class IntPosition : System.IEquatable<IntPosition>
 		return new IntPosition(Mathf.RoundToInt(vecA.x), Mathf.RoundToInt(vecA.y), Mathf.RoundToInt(vecA.z));
 	}
 
-	/**Adds a vector3 to an intposition*/
+	/**Converts an IntPositon into a Vector2*/
+	public static implicit operator Vector2(IntPosition posA)
+	{
+		return new Vector2(posA.x, posA.y);
+	}
+
+	/**Converts a Vector2 to an IntPosition*/
+	public static implicit operator IntPosition(Vector2 vecA)
+	{
+		return new IntPosition(Mathf.RoundToInt(vecA.x), Mathf.RoundToInt(vecA.y));
+	}
+
+	/**Adds a Vector3 to an IntPosition*/
 	public static IntPosition operator +(IntPosition posA, Vector3 vecA)
 	{
 		return new IntPosition(Mathf.RoundToInt(posA.x + vecA.x), Mathf.RoundToInt(posA.y + vecA.y), Mathf.RoundToInt(posA.z + vecA.z));
 	}
-	//TODO: Explict & Implict operator converstions from and too Vector3
+
+	/**Adds a Vector2 to an IntPosition*/
+	public static IntPosition operator +(IntPosition posA, Vector2 vecA)
+	{
+		return new IntPosition(Mathf.RoundToInt(posA.x + vecA.x), Mathf.RoundToInt(posA.y + vecA.y), posA.z);
+	}
+
+	/**Multiplies an IntPosition by a float*/
+	public static  IntPosition operator *(IntPosition posA, float floA)
+	{
+		return new IntPosition(Mathf.RoundToInt(posA.x * floA), Mathf.RoundToInt(posA.y * floA), Mathf.RoundToInt(posA.z * floA));
+	}
+
+	/**Divides an IntPosition by a float*/
+	public static IntPosition operator /(IntPosition posA, float floA)
+	{
+		return new IntPosition(Mathf.RoundToInt(posA.x / floA), Mathf.RoundToInt(posA.y / floA), Mathf.RoundToInt(posA.z / floA));
+	}
 
 	public override int GetHashCode()
 	{
@@ -271,3 +311,16 @@ public class WorldTime
 {
 	
 }
+
+/**A directional enum for object's to face*/
+public enum ObjectDirection : byte
+{
+	EAST,
+	NORTH,
+	WEST,
+	SOUTH,
+	NORTH_EAST,
+	NORTH_WEST,
+	SOUTH_WEST,
+	SOUTH_EAST,
+};

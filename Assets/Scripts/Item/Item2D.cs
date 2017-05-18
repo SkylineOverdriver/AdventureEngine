@@ -80,6 +80,7 @@ public enum DamageType : byte
 	RADIATION = 7,		//Radiation Damage
 	CHEMICAL = 8,		//Chemical Damage
 	VIRAL = 9,		//Viral Damage
+	TEARING = 10,		//Teraing Damage
 	PSYCHOLOGICAL = 126,	//Psychological Damage (Used on some magic spells)
 	EMOTONIAL = 127,	//Emotional Damage (Used only on some magic spells)
 }

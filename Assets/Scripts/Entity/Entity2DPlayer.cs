@@ -111,6 +111,9 @@ public enum PlayerClass : byte
 	//One who can control others through their aspect
 	HOST = 15,
 	//One who can be possessed by their aspect
+
+	//The character that has specaliatiy in all weapons
+	ULTIMATE = 16,
 };
 
 [System.Serializable]

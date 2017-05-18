@@ -13,6 +13,12 @@ public class Entity2D : MonoBehaviour
 	/**The name of this entity*/
 	public string entityName = "entity";
 
+	/**The direction of this entity*/
+	public ObjectDirection direction = ObjectDirection.EAST;
+
+	/**The animations on this entity*/
+	public Animator entityAnimations;
+
 	// Use this for initialization
 	protected virtual void Start()
 	{
@@ -22,7 +28,7 @@ public class Entity2D : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
 	{
-
+		
 	}
 
 	/**Teleorts this entity*/
@@ -32,15 +38,76 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Moves this entity in the direction supplied*/
-	public virtual void Move(Vector2 direction)
+	public virtual void Move(IntPosition location)
 	{
-		transform.Translate(direction);
+		transform.Translate(location);
 	}
 
 	/**Smothly moves this entity in the direction supplied, over time*/
 	public virtual void MoveSmooth(Vector2 direction, int frames)
 	{
 		
+	}
+
+	/**Moves this entity in the given direction, distance number of tiles*/
+	public virtual void Move(ObjectDirection dir, int distance)
+	{
+		Rotate(dir);
+		transform.Translate(transform.right * distance);
+	}
+
+	/**Rotates this entity to face a different direction*/
+	public virtual void Rotate(ObjectDirection newDirection)
+	{
+		//Rotate this entity and set it's animation parameters
+		direction = newDirection;
+
+		//entityAnimations.SetInteger("Direction", (int) newDirection);
+
+		switch(newDirection)
+		{
+		case ObjectDirection.EAST:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+			break;
+		case ObjectDirection.NORTH:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
+			break;
+		case ObjectDirection.WEST:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f));
+			break;
+		case ObjectDirection.SOUTH:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 270f));
+			break;
+		case ObjectDirection.NORTH_EAST:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 45f));
+			break;
+		case ObjectDirection.NORTH_WEST:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 135f));
+			break;
+		case ObjectDirection.SOUTH_WEST:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 225f));
+			break;
+		case ObjectDirection.SOUTH_EAST:
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 315f));
+			break;
+		default:
+			Debug.Log("Unknown direction supplied!");
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+			break;
+		}
+	}
+
+	/**Rotates this entity to face a different direction, happens over time*/
+	public virtual void RotateSmooth(ObjectDirection newDirection)
+	{
+		
+	}
+
+	/**Rotates thie entity to face a different direction, doesn't rotate the object*/
+	public virtual void RotateNoTransform(ObjectDirection newDirection)
+	{
+		direction = newDirection;
+		//TODO: Finish rotation code
 	}
 
 	/**Called when this entity interacts with another entity*/

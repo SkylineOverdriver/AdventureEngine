@@ -327,7 +327,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   hostility: 0
-  entityName: noName
+  entityName: player
+  direction: 0
+  entityAnimations: {fileID: 0}
   movementNorth: {x: 0, y: 1}
   movementSouth: {x: 0, y: -1}
   movementEast: {x: 1, y: 0}
@@ -813,6 +815,8 @@ MonoBehaviour:
   canMove: 1
   hostility: 0
   entityName: noName
+  direction: 0
+  entityAnimations: {fileID: 0}
   movementNorth: {x: 0, y: 0.1}
   movementSouth: {x: 0, y: -0.1}
   movementEast: {x: 0.1, y: 0}
@@ -915,7 +919,7 @@ Prefab:
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}

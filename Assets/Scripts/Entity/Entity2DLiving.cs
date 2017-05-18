@@ -59,10 +59,10 @@ public class Entity2DLiving : Entity2D
 	}
 
 	/**Moves this entity in a direction with a certan number of units*/
-	public override void Move(Vector2 direction)
+	public override void Move(IntPosition location)
 	{
 		if(canMove)
-			base.Move(direction * agility.getValue());
+			base.Move(location * agility.getValue());
 	}
 
 	/**Heals the Entity*/
