@@ -56,6 +56,48 @@ public class Entity2D : MonoBehaviour
 		transform.Translate(transform.right * distance);
 	}
 
+	/**Moves this entity in the direction it's facing*/
+	public virtual void MoveForward(int distance)
+	{
+		transform.Translate(transform.right * distance);
+	}
+
+	/**Move this entity forward in the direction it's facing*/
+	public virtual void MoveForwardNoTransform(int distance)
+	{
+		switch(direction)
+		{
+		case ObjectDirection.EAST:
+			transform.Translate(transform.right * distance);
+			break;
+		case ObjectDirection.NORTH:
+			transform.Translate(transform.up * distance);
+			break;
+		case ObjectDirection.WEST:
+			transform.Translate(-transform.right * distance);
+			break;
+		case ObjectDirection.SOUTH:
+			transform.Translate(-transform.up * distance);
+			break;
+		case ObjectDirection.NORTH_EAST:
+			transform.Translate((transform.up + transform.right) * distance);
+			break;
+		case ObjectDirection.NORTH_WEST:
+			transform.Translate((transform.up + -transform.right) * distance);
+			break;
+		case ObjectDirection.SOUTH_WEST:
+			transform.Translate((-transform.up + -transform.right) * distance);
+			break;
+		case ObjectDirection.SOUTH_EAST:
+			transform.Translate((-transform.up + transform.right) * distance);
+			break;
+		default:
+			Debug.Log("Unknown direction supplied!");
+			transform.Translate(Vector3.zero);
+			break;
+		}
+	}
+
 	/**Rotates this entity to face a different direction*/
 	public virtual void Rotate(ObjectDirection newDirection)
 	{
@@ -95,6 +137,38 @@ public class Entity2D : MonoBehaviour
 			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
 			break;
 		}
+	}
+
+	/**Rotates this entities direction relateive to the current direction it's facing.*/
+	public virtual void RotateLocal(byte dirAmount)
+	{
+		direction += dirAmount;
+		if((byte) direction < (byte) ObjectDirection.EAST)
+		{
+			direction = ObjectDirection.SOUTH;
+		}
+		else if((byte) direction > (byte) ObjectDirection.SOUTH)
+		{
+			direction = ObjectDirection.EAST;
+		}
+
+		Rotate(direction);
+	}
+
+	/**Rotates this entities direction relateive to the direction it's facing (without transform).*/
+	public virtual void RotateLocalNoTransform(byte dirAmount)
+	{
+		direction += dirAmount;
+		if((byte) direction < (byte) ObjectDirection.EAST)
+		{
+			direction = ObjectDirection.SOUTH;
+		}
+		else if((byte) direction > (byte) ObjectDirection.SOUTH)
+		{
+			direction = ObjectDirection.EAST;
+		}
+
+		RotateNoTransform(direction);
 	}
 
 	/**Rotates this entity to face a different direction, happens over time*/

@@ -19,7 +19,7 @@ public class World2D : MonoBehaviour
 	public Entity2DPlayer thePlayer;
 
 	/**The ui helper to update the up for the player*/
-	public TextUpdate playerUIHelper;
+	public UIHelperPlayer playerUIHelper;
 
 	// Use this for initialization
 	void Awake() 
@@ -315,12 +315,23 @@ public class WorldTime
 /**A directional enum for object's to face*/
 public enum ObjectDirection : byte
 {
-	EAST,
-	NORTH,
-	WEST,
-	SOUTH,
-	NORTH_EAST,
-	NORTH_WEST,
-	SOUTH_WEST,
-	SOUTH_EAST,
+	//Absolute Directions
+	EAST = 0,
+	NORTH = 1,
+	WEST = 2,
+	SOUTH = 3,
+	NORTH_EAST = 4,
+	NORTH_WEST = 5,
+	SOUTH_WEST = 6,
+	SOUTH_EAST = 7,
+	//Used for no rotation parameters
+	NONE = 255,
+};
+
+public enum ObjectDirectionRotation : sbyte
+{
+	//Relative directions
+	RIGHT = 1,
+	LEFT = -1,
+	NONE = 0,
 };

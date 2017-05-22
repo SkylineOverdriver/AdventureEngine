@@ -11,13 +11,15 @@ public class Entity2DNPC : Entity2DLiving
 	protected override void Start()
 	{
 		base.Start();
-		ai = new EntityAI();
+		if(ai == null)
+			ai = new EntityAI();
 	}
 	
 	// Update is called once per frame
 	protected override void Update()
 	{
-		ai.advance();
+		if(ai.advance()) 
+			validateAIAction(ai.getCurrentTask().taskType);
 	}
 
 	public void OnTriggerEnter2D(Collider2D other)
@@ -34,16 +36,16 @@ public class Entity2DNPC : Entity2DLiving
 			//Do  nothing, this is a wait command
 			break;
 		case AITaskType.MOVE:
-
+			MoveForwardNoTransform(1);
 			break;
 		case AITaskType.TURN:
-
+			RotateLocalNoTransform(1);
 			break;
 		case AITaskType.PATROL:
-
+			//TODO: Add patrol code
 			break;
 		case AITaskType.FOLLOW:
-
+			//TODO: Add follow code
 			break;
 		default:
 			
@@ -77,8 +79,10 @@ public class EntityAI
 	}
 
 	/**Advenaces this entities AI to the next task*/
-	public void advance()
+	public bool advance()
 	{
+		//Debug.Log("Time: " + Time.time + ", LastTask: " + lastTaskStartup + ", CurrentID: " + currentTaskIndex);
+
 		//Check the timer and compare to make sure the wait time is over
 		if(Time.time - lastTaskStartup >= tasks[currentTaskIndex].taskLength)
 		{
@@ -88,10 +92,21 @@ public class EntityAI
 			//Run task code here
 
 			currentTaskIndex++;
+
+			//Check for task overflow
+			if(currentTaskIndex >= tasks.Count)
+				currentTaskIndex = 0;
+
+			return true;
 		}
 
-		if(currentTaskIndex >= tasks.Count)
-			currentTaskIndex = 0;
+		return false;
+	}
+
+	/**Gets the currently running AI task*/
+	public EntityAITask getCurrentTask()
+	{
+		return tasks[currentTaskIndex];
 	}
 }
 
@@ -115,6 +130,12 @@ public class EntityAITask
 		taskType = task;
 		taskLength = time;
 	}
+
+	public virtual void runTask()
+	{
+		
+	}
+
 
 }
 
