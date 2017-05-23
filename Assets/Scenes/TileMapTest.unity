@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872692, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -498,10 +498,15 @@ MonoBehaviour:
   entityName: entity
   direction: 0
   entityAnimations: {fileID: 0}
-  movementNorth: {x: 0, y: 0.1}
-  movementSouth: {x: 0, y: -0.1}
-  movementEast: {x: 0.1, y: 0}
-  movementWest: {x: -0.1, y: 0}
+  moveStep: {x: 0, y: 0}
+  targetLocation:
+    x: 0
+    y: 0
+    z: 0
+  movementNorth: {x: 0, y: 1}
+  movementSouth: {x: 0, y: -1}
+  movementEast: {x: 1, y: 0}
+  movementWest: {x: -1, y: 0}
   entityGender: 0
   health:
     min: 0
@@ -1133,6 +1138,11 @@ MonoBehaviour:
   entityName: entity
   direction: 0
   entityAnimations: {fileID: 0}
+  moveStep: {x: 0, y: 0}
+  targetLocation:
+    x: 0
+    y: 0
+    z: 0
   movementNorth: {x: 0, y: 0.1}
   movementSouth: {x: 0, y: -0.1}
   movementEast: {x: 0.1, y: 0}
@@ -1236,12 +1246,12 @@ Prefab:
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 338
+      value: 443.5
       objectReference: {fileID: 0}
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
