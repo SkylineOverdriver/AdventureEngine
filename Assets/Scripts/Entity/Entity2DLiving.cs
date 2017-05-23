@@ -102,7 +102,7 @@ public class Entity2DLiving : Entity2D
 	/**Called when this entity is interacted with*/
 	public virtual void onInteract()
 	{
-		
+		//World2D.theWorld.playerUIHelper.displayText("Testing", this.GetComponent<SpriteRenderer> ().sprite, this.entityName);
 	}
 }
 	
