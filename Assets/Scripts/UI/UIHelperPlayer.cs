@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-<<<<<<< HEAD:Assets/Scripts/UI/UIHelperPlayer.cs
 public class UIHelperPlayer : MonoBehaviour
-=======
-public class TextUpdate : MonoBehaviour
->>>>>>> origin/master:Assets/Scripts/UI/TextUpdate.cs
 {
 	public Canvas interactCanvas;
 
