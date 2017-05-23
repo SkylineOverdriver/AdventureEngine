@@ -19,6 +19,11 @@ public class Entity2D : MonoBehaviour
 	/**The animations on this entity*/
 	public Animator entityAnimations;
 
+	/**The steps of the entitie's movement*/
+	public Vector2 moveStep;
+	/**The target location of the entity*/
+	public IntPosition targetLocation;
+
 	// Use this for initialization
 	protected virtual void Start()
 	{

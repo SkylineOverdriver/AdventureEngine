@@ -327,13 +327,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   hostility: 0
-  entityName: player
+  entityName: entity
   direction: 0
   entityAnimations: {fileID: 0}
-  movementNorth: {x: 0, y: 1}
-  movementSouth: {x: 0, y: -1}
-  movementEast: {x: 1, y: 0}
-  movementWest: {x: -1, y: 0}
+  movementNorth: {x: 0, y: 0.1}
+  movementSouth: {x: 0, y: -0.1}
+  movementEast: {x: 0.1, y: 0}
+  movementWest: {x: -0.1, y: 0}
   entityGender: 0
   health:
     min: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
     useIntegers: 0
   isDead: 0
   activeEffects: []
-  entityInventory: {fileID: 549338073}
+  entityInventory: {fileID: 0}
   keyNorth: 119
   keySouth: 115
   keyEast: 100
@@ -860,10 +860,7 @@ MonoBehaviour:
   ai:
     tasks:
     - taskType: 1
-      taskLength: 0.5
-      taskCondition: 0
-    - taskType: 0
-      taskLength: 1
+      taskLength: 0
       taskCondition: 0
     - taskType: 2
       taskLength: 0.5
@@ -925,7 +922,7 @@ Prefab:
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
