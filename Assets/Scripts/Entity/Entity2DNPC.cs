@@ -25,6 +25,8 @@ public class Entity2DNPC : Entity2DLiving
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		//TODO: Add Entity interaction
+
+
 	}
 
 	/**Do the AI action for the task type*/
