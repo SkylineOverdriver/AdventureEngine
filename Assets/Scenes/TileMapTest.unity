@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872692, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 443983066}
   - component: {fileID: 443983065}
   m_Layer: 5
-  m_Name: txtName
+  m_Name: Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,10 +324,10 @@ RectTransform:
   m_Father: {fileID: 793568720}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126, y: 65.473}
-  m_SizeDelta: {x: 396, y: 30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 285, y: -25}
+  m_SizeDelta: {x: 550, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443983065
 MonoBehaviour:
@@ -498,6 +498,11 @@ MonoBehaviour:
   entityName: entity
   direction: 0
   entityAnimations: {fileID: 0}
+  moveStep: {x: 0, y: 0}
+  targetLocation:
+    x: 0
+    y: 0
+    z: 0
   movementNorth: {x: 0, y: 0.1}
   movementSouth: {x: 0, y: -0.1}
   movementEast: {x: 0.1, y: 0}
@@ -662,7 +667,6 @@ GameObject:
   - component: {fileID: 793568720}
   - component: {fileID: 793568723}
   - component: {fileID: 793568722}
-  - component: {fileID: 793568721}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -687,21 +691,10 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -160}
-  m_SizeDelta: {x: -215, y: -359}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: -200, y: 161}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &793568721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 793568719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fd320660e838c9448bc9fae580929a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &793568722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,14 +707,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -830,7 +823,7 @@ GameObject:
   - component: {fileID: 1433638885}
   - component: {fileID: 1433638884}
   m_Layer: 5
-  m_Name: imgSpeaker
+  m_Name: Entity Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -849,10 +842,10 @@ RectTransform:
   m_Father: {fileID: 793568720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 263, y: 6.5}
-  m_SizeDelta: {x: 139, y: 126}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -74, y: 0}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1433638884
 MonoBehaviour:
@@ -1133,6 +1126,11 @@ MonoBehaviour:
   entityName: entity
   direction: 0
   entityAnimations: {fileID: 0}
+  moveStep: {x: 0, y: 0}
+  targetLocation:
+    x: 0
+    y: 0
+    z: 0
   movementNorth: {x: 0, y: 0.1}
   movementSouth: {x: 0, y: -0.1}
   movementEast: {x: 0.1, y: 0}
@@ -1236,7 +1234,7 @@ Prefab:
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 338
+      value: 443.5
       objectReference: {fileID: 0}
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
@@ -1531,7 +1529,7 @@ GameObject:
   - component: {fileID: 2020352714}
   - component: {fileID: 2020352713}
   m_Layer: 5
-  m_Name: txtDialog
+  m_Name: Dialogue Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1550,10 +1548,10 @@ RectTransform:
   m_Father: {fileID: 793568720}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126, y: -17}
-  m_SizeDelta: {x: 396, y: 111}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 285, y: 60}
+  m_SizeDelta: {x: 550, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020352713
 MonoBehaviour:
