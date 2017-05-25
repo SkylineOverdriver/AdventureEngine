@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextUpdate : MonoBehaviour
+public class UIHelperPlayer : MonoBehaviour
 {
 	public Canvas interactCanvas;
 
@@ -12,11 +12,26 @@ public class TextUpdate : MonoBehaviour
 
 	/**The class for the character's name*/
 	public Text characterNameText;
-	// Use this for initialization
 
 	/**The class for the text that appears on the bottom left when a character speaks to you*/
 	public Text dialogueText;
 
+	/**Display's the interaction UI*/
+	public void displayInteraction(string description, Sprite interactIcon, string interactName)
+	{
+		
+	}
+
+	/**The image for player mana display*/
+	public Image healthImage;
+	/***/
+	public Image manaImage;
+
+	/***/
+	public void UpdateStats()
+	{
+		
+	}
 
 	public void displayText(string text, Sprite icon, string name)
 	{
@@ -26,7 +41,7 @@ public class TextUpdate : MonoBehaviour
 
 	}
 
-	void Start () 
+	void Start()
 	{
 
 
@@ -34,7 +49,8 @@ public class TextUpdate : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 		
 	}
 }

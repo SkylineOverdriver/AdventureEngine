@@ -1,16 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 30568b9b14206a244be72e9cd471937c
-timeCreated: 1495489204
-=======
-<<<<<<< HEAD
-guid: 4e69bebc516b1d24c945bdd350748e01
-timeCreated: 1495144408
-=======
-guid: c9b8b1bafe055c04aa0aba93fdd0f08b
-timeCreated: 1495574470
->>>>>>> a85572149ee505b3e6dac0139ec188e7747804d4
->>>>>>> master
+guid: 4e6d5645a61aac940ac08c8cef24d4ba
+timeCreated: 1495231076
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -50,7 +40,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -61,6 +51,14 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1
