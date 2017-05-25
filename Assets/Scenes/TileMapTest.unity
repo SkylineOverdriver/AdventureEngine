@@ -1234,11 +1234,8 @@ Prefab:
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-<<<<<<< HEAD
       value: 424
-=======
       value: 443.5
->>>>>>> refs/remotes/origin/master
       objectReference: {fileID: 0}
     - target: {fileID: 224413052105956184, guid: 40f76a79ad7434f428f60e6dfd64ce74,
         type: 2}
