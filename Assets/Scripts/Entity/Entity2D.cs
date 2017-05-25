@@ -30,7 +30,7 @@ public class Entity2D : MonoBehaviour
 		
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame 
 	protected virtual void Update()
 	{
 		

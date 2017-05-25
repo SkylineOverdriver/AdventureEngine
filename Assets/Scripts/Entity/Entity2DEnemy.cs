@@ -11,6 +11,5 @@ public class Entity2DEnemy : Entity2DNPC
 		base.Start();
 		//Temporary code to make this entity wait forever
 		//ai.addTask(new EntityAITask(AITaskType.WAIT, float.MaxValue));
-
 	}
 }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ImageUtilities : MonoBehaviour
 {
+	/**Image utilties*/
 	public Texture2D[] testImages;
-
+	/***/
 	public Texture2D returnImage;
-
+	/***/
 	public Sprite testSprite;
 
 	// Use this for initialization
