@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &472702255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,6 +503,10 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
+  position:
+    x: 0
+    y: 0
+    z: 0
   movementNorth: {x: 0, y: 1}
   movementSouth: {x: 0, y: -1}
   movementEast: {x: 1, y: 0}
@@ -600,7 +604,7 @@ SpriteRenderer:
   m_SortingLayerID: -714640255
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 483cc7af7fbae8a44b584a4d09929b90, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63ca1f0708276304e9922a64099d4bdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1130,6 +1134,10 @@ MonoBehaviour:
   entityAnimations: {fileID: 0}
   moveStep: {x: 0, y: 0}
   targetLocation:
+    x: 0
+    y: 0
+    z: 0
+  position:
     x: 0
     y: 0
     z: 0

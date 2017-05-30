@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SpritesPixelAlignment
-  m_Shader: {fileID: 4800000, guid: 6a8fb62cf035a0047b8ed19af51ccdf6, type: 3}
+  m_Shader: {fileID: 4800000, guid: eccd313007be04846842c2300b467228, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA PIXELSNAP_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

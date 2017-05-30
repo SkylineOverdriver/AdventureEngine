@@ -37,6 +37,32 @@ public class Entity2DNPC : Entity2DLiving
 		case AITaskType.WAIT:
 			//Do  nothing, this is a wait command
 			break;
+		case AITaskType.MOVEFORWARD:
+			MoveForwardNoTransform(1);
+			break;
+		case AITaskType.TURNLEFT:
+			RotateLocalNoTransform(1);
+			break;
+		case AITaskType.TURNRIGHT:
+			RotateLocalNoTransform(-1);
+			break;
+		case AITaskType.PATROL:
+			//TODO: Add patrol code
+			break;
+		case AITaskType.FOLLOW:
+			//TODO: Add follow code
+			break;
+		default:
+			//Do nothing
+			break;
+		}
+
+		/*
+		switch(task)
+		{
+		case AITaskType.WAIT:
+			//Do  nothing, this is a wait command
+			break;
 		case AITaskType.MOVE:
 			MoveForwardNoTransform(1);
 			break;
@@ -52,7 +78,7 @@ public class Entity2DNPC : Entity2DLiving
 		default:
 			
 		break;
-		}
+		}*/
 	}
 }
 
