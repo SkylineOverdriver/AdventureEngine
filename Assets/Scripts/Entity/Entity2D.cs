@@ -24,6 +24,9 @@ public class Entity2D : MonoBehaviour
 	/**The target location of the entity*/
 	public IntPosition targetLocation;
 
+	/**The position of this entity*/
+	public IntPosition position;
+
 	// Use this for initialization
 	protected virtual void Start()
 	{
@@ -40,18 +43,20 @@ public class Entity2D : MonoBehaviour
 	public void Teleport(IntPosition destination)
 	{
 		transform.position = destination;
+		position = destination;
 	}
 
 	/**Moves this entity in the direction supplied*/
 	public virtual void Move(IntPosition location)
 	{
 		transform.Translate(location);
+		position = location;
 	}
 
 	/**Smothly moves this entity in the direction supplied, over time*/
 	public virtual void MoveSmooth(Vector2 direction, int frames)
 	{
-		
+
 	}
 
 	/**Moves this entity in the given direction, distance number of tiles*/
@@ -199,6 +204,34 @@ public class Entity2D : MonoBehaviour
 	public virtual void OnInteracted(Entity2D sender)
 	{
 		
+	}
+
+	/**Returns the directioon this entity is facing*/
+	public virtual Vector2 getDirection()
+	{
+		switch(direction)
+		{
+		case ObjectDirection.NONE:
+			return Vector2.zero;
+		case ObjectDirection.EAST:
+			return Vector2.right;
+		case ObjectDirection.NORTH:
+			return Vector2.up;
+		case ObjectDirection.WEST:
+			return Vector2.left;
+		case ObjectDirection.SOUTH:
+			return Vector2.down;
+		case ObjectDirection.NORTH_EAST:
+			return new Vector2(1,1);
+		case ObjectDirection.NORTH_WEST:
+			return new Vector2(-1,1);
+		case ObjectDirection.SOUTH_WEST:
+			return new Vector2(-1,-1);
+		case ObjectDirection.SOUTH_EAST:
+			return new Vector2(1,-1);
+		default:
+			return Vector2.zero;
+		}
 	}
 }
 

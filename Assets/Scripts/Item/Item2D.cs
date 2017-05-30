@@ -6,6 +6,10 @@ public class Item2D : MonoBehaviour
 {
 	/**The id of this item*/
 	public int itemID = 0;
+	/**The name of this item*/
+	public string itemName = "";
+	/**The pack that this item comes from*/
+	public string itemPackID = "";
 
 	/**The amount of damage this item does*/
 	public EntityAttribute damage = new EntityAttribute(0).setTrueInfiniteCaps();
@@ -43,6 +47,9 @@ public class Item2D : MonoBehaviour
 	/**Called when this item is updated (TODO: Move this to it's own class)*/
 	public virtual void itemUpdate() {}
 
+	/**The inventory that this item is in*/
+	public Inventory itemInventory;
+
 	/**Adds a modifiyer to the entities modifiyer list*/
 	public void addModifiyer(AttributeModifiyer modifiyer)
 	{
@@ -66,6 +73,27 @@ public class Item2D : MonoBehaviour
 	{
 
 	}
+
+	/**Compares this item to another item*/
+	public bool Equals(Item2D other)
+	{
+		if(this.itemID == other.itemID)
+			return true;
+		else
+			return false;
+	}
+
+	/**Sets this item's inventoryy to a new inventory*/
+	public void setInentory(Inventory newInventory)
+	{
+		this.itemInventory = newInventory;
+	}
+
+	/**Clears the inventoy on this item*/
+	public void removeInventory()
+	{
+		this.itemInventory = null;
+	}
 }
 
 public enum DamageType : byte
@@ -81,8 +109,6 @@ public enum DamageType : byte
 	CHEMICAL = 8,		//Chemical Damage
 	VIRAL = 9,		//Viral Damage
 	TEARING = 10,		//Teraing Damage
-	PSYCHOLOGICAL = 126,	//Psychological Damage (Used on some magic spells)
-	EMOTONIAL = 127,	//Emotional Damage (Used only on some magic spells)
 }
 
 public interface IItemUse
