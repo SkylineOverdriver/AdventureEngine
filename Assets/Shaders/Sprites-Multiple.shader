@@ -1,5 +1,7 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Sprites-Multiple" 
 {
 	Properties
@@ -60,7 +62,7 @@ Shader "Sprites-Multiple"
 			{
 			Fragment o;
 
-			o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.vertex = UnityObjectToClipPos(v.vertex);
 			o.uv_MainTex = v.uv_MainTex;
 			o.uv2 = v.uv2;
 
