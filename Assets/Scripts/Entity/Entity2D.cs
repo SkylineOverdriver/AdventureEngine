@@ -150,14 +150,14 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Rotates this entities direction relateive to the current direction it's facing.*/
-	public virtual void RotateLocal(byte dirAmount)
+	public virtual void RotateLocal(sbyte dirAmount)
 	{
 		direction += dirAmount;
-		if((byte) direction < (byte) ObjectDirection.EAST)
+		if((sbyte) direction < (sbyte) ObjectDirection.EAST)
 		{
 			direction = ObjectDirection.SOUTH;
 		}
-		else if((byte) direction > (byte) ObjectDirection.SOUTH)
+		else if((sbyte) direction > (sbyte) ObjectDirection.SOUTH)
 		{
 			direction = ObjectDirection.EAST;
 		}
@@ -166,14 +166,14 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Rotates this entities direction relateive to the direction it's facing (without transform).*/
-	public virtual void RotateLocalNoTransform(byte dirAmount)
+	public virtual void RotateLocalNoTransform(sbyte dirAmount)
 	{
 		direction += dirAmount;
-		if((byte) direction < (byte) ObjectDirection.EAST)
+		if((sbyte) direction < (sbyte) ObjectDirection.EAST)
 		{
 			direction = ObjectDirection.SOUTH;
 		}
-		else if((byte) direction > (byte) ObjectDirection.SOUTH)
+		else if((sbyte) direction > (sbyte) ObjectDirection.SOUTH)
 		{
 			direction = ObjectDirection.EAST;
 		}
@@ -232,6 +232,12 @@ public class Entity2D : MonoBehaviour
 		default:
 			return Vector2.zero;
 		}
+	}
+
+	/**Called when this entity is attacked*/
+	public virtual void onAttacked(float damageIn)
+	{
+		//Do nothing
 	}
 }
 

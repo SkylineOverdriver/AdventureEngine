@@ -50,3 +50,6 @@ TagManager:
   - name: Entity
     uniqueID: 3580327041
     locked: 0
+  - name: TileOverlay
+    uniqueID: 4150065997
+    locked: 0

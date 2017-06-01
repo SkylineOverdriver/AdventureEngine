@@ -46,39 +46,26 @@ public class Entity2DNPC : Entity2DLiving
 		case AITaskType.TURNRIGHT:
 			RotateLocalNoTransform(-1);
 			break;
+		case AITaskType.ATTACK:
+			attack();
+			break;
 		case AITaskType.PATROL:
 			//TODO: Add patrol code
 			break;
 		case AITaskType.FOLLOW:
-			//TODO: Add follow code
+			//TODO: Add follow coden
+			break;
+		case AITaskType.MOVERANDOM:
+
+			break;
+		case AITaskType.TURNRANDOM:
+			RotateLocalNoTransform((sbyte) Random.Range(-1, 2));
 			break;
 		default:
-			//Do nothing
+			Debug.LogWarning("AI Command " + task + " is unregistered. It could be an old command, if so, please update it!", this);
+			//Log the error
 			break;
 		}
-
-		/*
-		switch(task)
-		{
-		case AITaskType.WAIT:
-			//Do  nothing, this is a wait command
-			break;
-		case AITaskType.MOVE:
-			MoveForwardNoTransform(1);
-			break;
-		case AITaskType.TURN:
-			RotateLocalNoTransform(1);
-			break;
-		case AITaskType.PATROL:
-			//TODO: Add patrol code
-			break;
-		case AITaskType.FOLLOW:
-			//TODO: Add follow code
-			break;
-		default:
-			
-		break;
-		}*/
 	}
 }
 
@@ -169,7 +156,7 @@ public class EntityAITask
 
 public enum AITaskType : byte
 {
-	WAIT = 0,
+	WAIT = 0, //Default action
 	MOVE = 1,
 	TURN = 2,
 	PATROL = 3,
@@ -180,13 +167,17 @@ public enum AITaskType : byte
 	RANDOM = 8,
 	ITEMUSELEFT = 9,
 	ITEMUSERIGHT = 10,
+
 	TURNLEFT = 40,
 	TURNRIGHT = 41,
 	TURNBACK = 42,
 	TURNRANDOM = 43,
+
 	MOVEFORWARD = 50,
 	MOVEBACKWARD = 51,
 	MOVELEFT = 52,
 	MOVERIGHT = 53,
 	MOVERANDOM = 54,
+
+	INTERACT = 70,
 };

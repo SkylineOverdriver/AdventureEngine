@@ -34,10 +34,10 @@ public class World2D : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	//void Update () 
-	//{
-		
-	//}
+	void Update () 
+	{
+		//TODO: Timer code here
+	}
 
 	/**Creates a tile*/
 	public void createTile(string tileID)
@@ -313,7 +313,7 @@ public class WorldTime
 }
 
 /**A directional enum for object's to face*/
-public enum ObjectDirection : byte
+public enum ObjectDirection : sbyte
 {
 	//Absolute Directions
 	EAST = 0,
@@ -325,7 +325,7 @@ public enum ObjectDirection : byte
 	SOUTH_WEST = 6,
 	SOUTH_EAST = 7,
 	//Used for no rotation parameters
-	NONE = 255,
+	NONE = -128,
 };
 
 public enum ObjectDirectionRotation : sbyte

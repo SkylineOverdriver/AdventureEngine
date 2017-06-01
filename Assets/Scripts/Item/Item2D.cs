@@ -48,7 +48,7 @@ public class Item2D : MonoBehaviour
 	public virtual void itemUpdate() {}
 
 	/**The inventory that this item is in*/
-	public Inventory itemInventory;
+	public Inventory itemInventory = null;
 
 	/**Adds a modifiyer to the entities modifiyer list*/
 	public void addModifiyer(AttributeModifiyer modifiyer)

@@ -43,7 +43,7 @@ public class Entity2DLiving : Entity2D
 	// Use this for initialization
 	protected override void Start()
 	{
-		
+		this.entityInventory.attachedEntity = this;
 	}
 	
 	// Update is called once per frame
@@ -101,13 +101,31 @@ public class Entity2DLiving : Entity2D
 	/**Attacks the entity in front of this one*/
 	public virtual void attack()
 	{
-		World2D.theWorld.getTile(getDirection());
+		World2D.theWorld.getTile(getDirection()).getEntity().onAttacked(this.getAttackDamage());
+	}
+
+	/**Called when this entity is attacked*/
+	public override void onAttacked(float damageIn)
+	{
+		this.hurt(damageIn);
+	}
+
+	/**Hurts this entity*/
+	public virtual void hurt(float amount)
+	{
+		this.removeHealth(amount);
 	}
 
 	/**Called when this entity is interacted with*/
 	public virtual void onInteract()
 	{
 		//World2D.theWorld.playerUIHelper.displayText("Testing", this.GetComponent<SpriteRenderer> ().sprite, this.entityName);
+	}
+
+	/**Returns this entitites attack*/
+	public virtual float getAttackDamage()
+	{
+		return this.strength.getValue() + this.entityInventory.getHeldItem(0).damage.getValue();
 	}
 }
 	
