@@ -22,7 +22,7 @@ public class Entity2D : MonoBehaviour
 	/**The steps of the entitie's movement*/
 	public Vector2 moveStep;
 	/**The target location of the entity*/
-	public IntPosition targetLocation;
+	public IntPosition targetPosition;
 
 	/**The position of this entity*/
 	public IntPosition position;
@@ -42,6 +42,7 @@ public class Entity2D : MonoBehaviour
 	/**Teleorts this entity*/
 	public void Teleport(IntPosition destination)
 	{
+		targetPosition = destination;
 		transform.position = destination;
 		position = destination;
 	}
@@ -232,12 +233,6 @@ public class Entity2D : MonoBehaviour
 		default:
 			return Vector2.zero;
 		}
-	}
-
-	/**Called when this entity is attacked*/
-	public virtual void onAttacked(float damageIn)
-	{
-		//Do nothing
 	}
 }
 
