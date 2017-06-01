@@ -35,4 +35,10 @@ public class InventoryEntityLiving : Inventory
 	{
 		return attachedEntity;
 	}
+
+	/**Set's the entity that is attached to this inventory*/
+	public void setEntity(Entity2DLiving entity)
+	{
+		attachedEntity = entity;
+	}
 }
