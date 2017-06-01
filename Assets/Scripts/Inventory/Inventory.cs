@@ -10,13 +10,33 @@ public class Inventory : MonoBehaviour
 	/**Adds a slot's amount of items to this invetory*/
 	public void addSlotItem(InventorySlot slot)
 	{
-		
+		inventorySlots.Add(slot);
 	}
 
 	/**Add's an item to this inventory*/
 	public void addItem(Item2D item, int amount)
 	{
-		
+		item.setInentory(this);
+		inventorySlots.Add(new InventorySlot(item, amount));
+	}
+
+	/**Removes a certan amount of an item from the inventory*/
+	public void removeItem(Item2D item, int amount)
+	{
+		for(int i = 0; i < inventorySlots.Count; i++)
+		{
+			if(inventorySlots[i].item == item)
+			{
+				inventorySlots[i].amount -= amount;
+			}
+		}
+	}
+
+	/**Gets rid of an item from this inventort, by slotID*/
+	public void removeItem(int slotID)
+	{
+		inventorySlots[slotID].item.removeInventory();
+		inventorySlots.RemoveAt(slotID);
 	}
 
 	// Use this for initialization
@@ -55,5 +75,11 @@ public class InventorySlot
 	{
 		item.addModifiyer(new AttributeModifiyer("base.health.max", 15.0f, AttributeModType.ADD));
 		return this;
+	}
+
+	/**Gets the item in this itemslot*/
+	public Item2D getItem()
+	{
+		return item;
 	}
 }

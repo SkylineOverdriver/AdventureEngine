@@ -313,7 +313,7 @@ public class WorldTime
 }
 
 /**A directional enum for object's to face*/
-public enum ObjectDirection : byte
+public enum ObjectDirection : sbyte
 {
 	//Absolute Directions
 	EAST = 0,
@@ -325,7 +325,7 @@ public enum ObjectDirection : byte
 	SOUTH_WEST = 6,
 	SOUTH_EAST = 7,
 	//Used for no rotation parameters
-	NONE = 255,
+	NONE = 127,
 };
 
 public enum ObjectDirectionRotation : sbyte

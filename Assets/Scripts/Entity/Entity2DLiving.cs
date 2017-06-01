@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +43,7 @@ public class Entity2DLiving : Entity2D
 	// Use this for initialization
 	protected override void Start()
 	{
-		
+		entityInventory.setEntity(this);
 	}
 	
 	// Update is called once per frame
@@ -56,7 +55,7 @@ public class Entity2DLiving : Entity2D
 	/**Use's this entities currently held item*/
 	public void useItem()
 	{
-		entityInventory.getItem().itemUse(KeyCode.Mouse0);
+		entityInventory.getHeldItem(0).itemUse(KeyCode.Mouse0);
 	}
 
 	/**Moves this entity in a direction with a certan number of units*/
@@ -97,6 +96,12 @@ public class Entity2DLiving : Entity2D
 	public virtual void interact()
 	{
 		
+	}
+
+	/**Attacks the entity in front of this one*/
+	public virtual void attack()
+	{
+		World2D.theWorld.getTile(getDirection());
 	}
 
 	/**Called when this entity is interacted with*/

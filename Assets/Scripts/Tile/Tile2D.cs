@@ -19,7 +19,7 @@ public class Tile2D : MonoBehaviour
 	/**Is none of this tile solid*/
 	public bool solidNone = false;
 	/**The solidity of the tile*/
-	public int solidity = 0x0000 & 0x0001 & 0x0002 & 0x0004;
+	public int solidity = 0x0000 & 0x0001 & 0x0002 & 0x0008;
 
 	//Checked if solidAll is false
 	/**Is the north side of this tile solid*/
@@ -62,10 +62,34 @@ public class Tile2D : MonoBehaviour
 		 
 	}
 
+	/**Gets the solidity of this tile*/
+	public bool getSolid()
+	{
+		return solidAll;
+	}
+
 	/**Get's a direction from a vector2*/
 	public void getDirectionFromVector2()
 	{
 			
+	}
+
+	/**Sets the entity refrence on this tile*/
+	public void setEntity(Entity2D newEntity)
+	{
+		entity = newEntity;
+	}
+
+	/**Returns the entity on this tile*/
+	public Entity2D getEntity()
+	{
+		return entity;
+	}
+
+	/**Removes the entity refrence on this tile*/
+	public void clearEntity()
+	{
+		entity = null;
 	}
 }
 

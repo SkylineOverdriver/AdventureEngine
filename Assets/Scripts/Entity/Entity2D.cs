@@ -22,7 +22,10 @@ public class Entity2D : MonoBehaviour
 	/**The steps of the entitie's movement*/
 	public Vector2 moveStep;
 	/**The target location of the entity*/
-	public IntPosition targetLocation;
+	public IntPosition targetPosition;
+
+	/**The position of this entity*/
+	public IntPosition position;
 
 	// Use this for initialization
 	protected virtual void Start()
@@ -39,19 +42,22 @@ public class Entity2D : MonoBehaviour
 	/**Teleorts this entity*/
 	public void Teleport(IntPosition destination)
 	{
+		targetPosition = destination;
 		transform.position = destination;
+		position = destination;
 	}
 
 	/**Moves this entity in the direction supplied*/
 	public virtual void Move(IntPosition location)
 	{
 		transform.Translate(location);
+		position = location;
 	}
 
 	/**Smothly moves this entity in the direction supplied, over time*/
 	public virtual void MoveSmooth(Vector2 direction, int frames)
 	{
-		
+
 	}
 
 	/**Moves this entity in the given direction, distance number of tiles*/
@@ -145,14 +151,14 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Rotates this entities direction relateive to the current direction it's facing.*/
-	public virtual void RotateLocal(byte dirAmount)
+	public virtual void RotateLocal(sbyte dirAmount)
 	{
 		direction += dirAmount;
-		if((byte) direction < (byte) ObjectDirection.EAST)
+		if((sbyte) direction < (sbyte) ObjectDirection.EAST)
 		{
 			direction = ObjectDirection.SOUTH;
 		}
-		else if((byte) direction > (byte) ObjectDirection.SOUTH)
+		else if((sbyte) direction > (sbyte) ObjectDirection.SOUTH)
 		{
 			direction = ObjectDirection.EAST;
 		}
@@ -161,14 +167,14 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Rotates this entities direction relateive to the direction it's facing (without transform).*/
-	public virtual void RotateLocalNoTransform(byte dirAmount)
+	public virtual void RotateLocalNoTransform(sbyte dirAmount)
 	{
 		direction += dirAmount;
-		if((byte) direction < (byte) ObjectDirection.EAST)
+		if((sbyte) direction < (sbyte) ObjectDirection.EAST)
 		{
 			direction = ObjectDirection.SOUTH;
 		}
-		else if((byte) direction > (byte) ObjectDirection.SOUTH)
+		else if((sbyte) direction > (sbyte) ObjectDirection.SOUTH)
 		{
 			direction = ObjectDirection.EAST;
 		}
@@ -199,6 +205,34 @@ public class Entity2D : MonoBehaviour
 	public virtual void OnInteracted(Entity2D sender)
 	{
 		
+	}
+
+	/**Returns the directioon this entity is facing*/
+	public virtual Vector2 getDirection()
+	{
+		switch(direction)
+		{
+		case ObjectDirection.NONE:
+			return Vector2.zero;
+		case ObjectDirection.EAST:
+			return Vector2.right;
+		case ObjectDirection.NORTH:
+			return Vector2.up;
+		case ObjectDirection.WEST:
+			return Vector2.left;
+		case ObjectDirection.SOUTH:
+			return Vector2.down;
+		case ObjectDirection.NORTH_EAST:
+			return new Vector2(1,1);
+		case ObjectDirection.NORTH_WEST:
+			return new Vector2(-1,1);
+		case ObjectDirection.SOUTH_WEST:
+			return new Vector2(-1,-1);
+		case ObjectDirection.SOUTH_EAST:
+			return new Vector2(1,-1);
+		default:
+			return Vector2.zero;
+		}
 	}
 }
 

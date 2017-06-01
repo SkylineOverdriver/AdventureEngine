@@ -11,4 +11,16 @@ public class Item2DWeapon : Item2D
 	{
 		addModifiyer(new AttributeModifiyer("base.strength.value", weaponDamage, AttributeModType.ADD));
 	}
+
+	public override void itemUse(KeyCode useButton)
+	{
+		if(useButton == KeyCode.Mouse0)
+		{
+			
+		}
+		else if(useButton == KeyCode.Mouse1)
+		{
+				
+		}
+	}
 }
