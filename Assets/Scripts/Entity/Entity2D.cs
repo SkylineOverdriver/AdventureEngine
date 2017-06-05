@@ -139,6 +139,18 @@ public class Entity2D : MonoBehaviour
 		case ObjectDirection.SOUTH:
 			StartCoroutine(ContinueMoveSouth());
 			break;
+		case ObjectDirection.NORTH_EAST:
+
+			break;
+		case ObjectDirection.NORTH_WEST:
+
+			break;
+		case ObjectDirection.SOUTH_WEST:
+
+			break;
+		case ObjectDirection.SOUTH_EAST:
+
+			break;
 		default:
 			Debug.LogWarning("Not Yet Implemented Movable Direction");
 			break;
