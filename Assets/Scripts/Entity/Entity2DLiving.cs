@@ -65,6 +65,13 @@ public class Entity2DLiving : Entity2D
 			base.Move(location * agility.getValue());
 	}
 
+	/**Smothly moves this entity in the direction supplied, over time*/
+	public override void MoveSmooth(IntPosition direction)
+	{
+		if(canMove)
+			base.MoveSmooth(direction);
+	}
+
 	/**Heals the Entity*/
 	public virtual void addHealth(float amount)
 	{
@@ -77,11 +84,38 @@ public class Entity2DLiving : Entity2D
 		health.subtractValue(amount);
 	}
 
-	/**Called when this entity dies*/
-	public virtual void die()
+	/**Give the entity mana*/
+	public virtual void addMana(float amount)
 	{
+		mana.addValue(amount);
+	}
+
+	/**Removes mana from the entity*/
+	public virtual void removeMana(float amount)
+	{
+		mana.subtractValue(amount);
+	}
+
+	/**Sets the entity's defense*/
+	public virtual void setDefense(float amount)
+	{
+		defense.setValue(amount);
+	}
+
+	/**Sets the entity's agility*/
+	public virtual void setAgility(float amount)
+	{
+		agility.setValue(amount);
+		moveStep = moveStepBase - (amount / 2);
+		if(moveStep < 1)
+			moveStep = 1;
+	}
+
+	/**Called when this entity dies*/
+	public override void die()
+	{
+		base.die();
 		isDead = true;
-		this.enabled = false;
 		dropItems();
 	}
 
@@ -95,15 +129,41 @@ public class Entity2DLiving : Entity2D
 	/**Called to make this entity interact with the entity in fron of it*/
 	public virtual void interact()
 	{
-		
+		if(World2D.theWorld.getTile(position + getDirection()).getEntity() != null)
+			World2D.theWorld.getTile(position + getDirection()).getEntity().onInteracted(this);
 	}
 
 	/**Attacks the entity in front of this one*/
 	public virtual void attack()
 	{
-		World2D.theWorld.getTile(getDirection());
+		if(World2D.theWorld.getTile(position + getDirection()).getEntity() != null)
+			World2D.theWorld.getTile(position + getDirection()).getEntity().onAttacked(this.getAttackDamage());
 	}
 
+	/**Called when this entity is attacked*/
+	public override void onAttacked(float damageIn)
+	{
+		//Calculates how much danage this entity will get 
+		float damageVal = damageIn - (defense.getValue() * 0.5f);
+		this.hurt(damageVal > 0 ? damageVal : 1);
+	}
+
+	/**Returns this entitites attack*/
+	public virtual float getAttackDamage()
+	{
+		return this.strength.getValue() + this.entityInventory.getHeldItem(0).damage.getValue();
+	}
+
+	/**Hurts this entity*/
+	public virtual void hurt(float amount)
+	{
+		this.removeHealth(amount);
+
+		if(this.health.getValue() <= health.min)
+		{
+			this.die();
+		}
+	}
 	/**Called when this entity is interacted with*/
 	public virtual void onInteract()
 	{

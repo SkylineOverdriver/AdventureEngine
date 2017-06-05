@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity2DItem : MonoBehaviour {
+public class Entity2DItem : Entity2D
+{
+	/**The item that this entity is*/
+	public Item2D item;
+	/**The amount of this item on this entity item*/
+	public int itemAmount;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public override void onInteracted(Entity2D sender)
+	{
+		if(typeof(Entity2DLiving).Equals(sender.GetType()))
+		{
+			Entity2DLiving entity = (Entity2DLiving) sender;
+			entity.entityInventory.addSlotItem(new InventorySlot(item, itemAmount));
+			Destroy(this.gameObject);
+		}
 	}
 }

@@ -14,8 +14,12 @@ public class Entity2DPlayer : Entity2DLiving
 	public KeyCode keyWest = KeyCode.A;
 	/**The keycode that makes the player move quickly*/
 	public KeyCode keyQuickMove = KeyCode.LeftShift;
+	/**The keycpde that makes the player rotate instead of move*/
+	public KeyCode keyRotate = KeyCode.LeftControl;
 	/**The keycode that the pplayer presses to interact with the entity at that direction*/
 	public KeyCode keyInteract = KeyCode.E;
+	/**The keycode that the player presses to attack an entity in that direction*/
+	public KeyCode keyAttack = KeyCode.Z;
 
 	/**The class of this player (Integer, 0 - 15, 0 = PAGE, 1 = PRINCE, 2 = BARD, 3 = SUMMONER, 4 = KING,
 	 5 = MAID, 6 = SYLPH, 7 = WITCH, 8 = MARTYR, 9 = QUEEN, 10 = HEIR, 11 = MAGE, 12 = KNIGHT, 13 = ROUGE
@@ -37,26 +41,36 @@ public class Entity2DPlayer : Entity2DLiving
 	{
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyNorth)) || Input.GetKeyDown(keyNorth))
 		{
-			Move(movementNorth);
-			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(0, 1, 0));
+			RotateNoTransform(ObjectDirection.NORTH);
+			MoveSmooth(movementNorth);
 		}
 
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keySouth)) || Input.GetKeyDown(keySouth))
 		{
-			Move(movementSouth);
-			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(0, -1, 0));
+			RotateNoTransform(ObjectDirection.SOUTH);
+			MoveSmooth(movementSouth);
 		}
 
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyEast)) || Input.GetKeyDown(keyEast))
 		{
-			Move(movementEast);
-			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(1, 0, 0));
+			RotateNoTransform(ObjectDirection.EAST);
+			MoveSmooth(movementEast);
 		}
 
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyWest)) || Input.GetKeyDown(keyWest))
 		{
-			Move(movementWest);
-			World2D.theWorld.getTile((IntPosition) transform.position + new IntPosition(-1, 0, 0));
+			RotateNoTransform(ObjectDirection.WEST);
+			MoveSmooth(movementWest);
+		}
+
+		if(Input.GetKey(keyInteract))
+		{
+			interact();
+		}
+
+		if(Input.GetKeyDown(keyAttack))
+		{
+			attack();
 		}
 	}
 }

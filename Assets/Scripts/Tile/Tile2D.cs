@@ -13,6 +13,10 @@ public class Tile2D : MonoBehaviour
 	public bool hasEntity = false;
 	/**The entity on this tile (null if no entity)*/
 	public Entity2D entity = null;
+	/**The item entity on this tile (null if no item)*/
+	public Entity2DItem itemEntity = null;
+	/**The tile entity on this tile (null if no tile entity)*/
+	public TileEntity2D tileEntity = null;
 
 	/**Can entities move through this tile (solid?)*/
 	public bool solidAll = true;
@@ -68,7 +72,13 @@ public class Tile2D : MonoBehaviour
 		return solidAll;
 	}
 
-	/**Get's a direction from a vector2*/
+	/**Gets whether this tile is movable or not*/
+	public bool getMovable()
+	{
+		return !solidAll && entity == null;
+	}
+
+	/**Returns a direction from a vector2*/
 	public void getDirectionFromVector2()
 	{
 			
@@ -78,6 +88,21 @@ public class Tile2D : MonoBehaviour
 	public void setEntity(Entity2D newEntity)
 	{
 		entity = newEntity;
+	}
+
+	/**Sets the entity refrence on this tile, if overwrite is true, then it overwrites old entities on this tile*/
+	public void setEntity(Entity2D newEntity, bool overwrite)
+	{
+		if(overwrite)
+		{
+			entity.die();
+			entity = newEntity;
+		}
+		else
+		{
+			entity = newEntity;
+		}
+
 	}
 
 	/**Returns the entity on this tile*/
@@ -90,6 +115,42 @@ public class Tile2D : MonoBehaviour
 	public void clearEntity()
 	{
 		entity = null;
+	}
+
+	/**Sets the item refrence on this tile*/
+	public void setItemEntity(Entity2DItem newItem)
+	{
+		itemEntity = newItem;
+	}
+
+	/**Returns the item refrence on this tile*/
+	public Entity2DItem getItemEntity()
+	{
+		return itemEntity;
+	}
+
+	/**Removes the item entity on this tile*/
+	public void clearItemEntity()
+	{
+		itemEntity = null;
+	}
+
+	/**Sets the tile entity on this tile*/
+	public void setTileEntity(TileEntity2D newTileEntity)
+	{
+		tileEntity = newTileEntity;
+	}
+
+	/**Returns the tile entity on this tile*/
+	public TileEntity2D getTileEntity()
+	{
+		return tileEntity;
+	}
+
+	/**Removes the tile entity from this tile*/
+	public void clearTileEntity()
+	{
+		tileEntity = null;
 	}
 }
 

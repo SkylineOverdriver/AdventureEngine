@@ -34,15 +34,22 @@ public class World2D : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	//void Update () 
-	//{
-		
-	//}
+	void Update () 
+	{
+		//TODO: move day/night cycle code to here
+	}
 
 	/**Creates a tile*/
 	public void createTile(string tileID)
 	{
 		
+	}
+
+	/**Creates an entity in the world*/
+	public void createEntity(Entity2D entity, IntPosition position)
+	{
+		Instantiate(entity);
+		//TODO: Add code for entity creation
 	}
 
 	/**Get's the currently loaded world*/
@@ -65,7 +72,9 @@ public class World2D : MonoBehaviour
 			//Debug.Log("Chunk Not Found @ " + getTileChunkPos(position));
 			//Debug.Log("Chunk Exists: " + loadedChunks.ContainsKey(getTileChunkPos(position)));
 			//listChunks();
-			return null;
+			GameObject tile = Instantiate(this.tileList[5], position, new Quaternion());
+			Destroy(tile, 2);
+			return tile.GetComponent<Tile2D>();
 		}
 
 	}
@@ -138,6 +147,18 @@ public class World2D : MonoBehaviour
 	{
 		//TODO: Put entity creation code here
 		//Instantiate();
+	}
+
+	/**Sets the position of an entity in the world*/
+	public void setEntityAt(Entity2D entity, IntPosition tilePos)
+	{
+		getTile(tilePos).setEntity(entity);
+	}
+
+	/**Returns the entity at the specifiyed position*/
+	public Entity2D getEntityAt(IntPosition tilePos)
+	{
+		return getTile(tilePos).getEntity();
 	}
 }
 
@@ -279,6 +300,18 @@ public class IntPosition : System.IEquatable<IntPosition>
 		return new IntPosition(Mathf.RoundToInt(posA.x / floA), Mathf.RoundToInt(posA.y / floA), Mathf.RoundToInt(posA.z / floA));
 	}
 
+	/**Adds an IntPosition to a Vector3*/
+	public static Vector3 operator +(Vector3 vecA, IntPosition posA)
+	{
+		return new Vector3(posA.x + posA.x, posA.y + posA.y, posA.z + posA.z);
+	}
+
+	/**Adds an IntPosition to a Vector2*/
+	public static Vector2 operator +(Vector2 vecA, IntPosition posA)
+	{
+		return new Vector2(vecA.x + posA.x, posA.y + posA.y);
+	}
+
 	public override int GetHashCode()
 	{
 		//return base.GetHashCode();
@@ -294,6 +327,25 @@ public class IntPosition : System.IEquatable<IntPosition>
 	{
 		return string.Format("(" + x + "," + y + "," + z + ")");
 	}
+
+	/**Shotthand for (0,0,0)*/
+	public static IntPosition zero = new IntPosition(0,0,0);
+	/**Shotthand for (1,0,0)*/
+	public static IntPosition east = new IntPosition(1,0,0);
+	/**Shotthand for (0,1,0)*/
+	public static IntPosition north = new IntPosition(0,1,0);
+	/**Shotthand for (-1,0,0)*/
+	public static IntPosition west = new IntPosition(-1,0,0);
+	/**Shotthand for (0,-1,0)*/
+	public static IntPosition south = new IntPosition(0,-1,0);
+	/**Shotthand for (1,1,0)*/
+	public static IntPosition northEast = new IntPosition(1,1,0);
+	/**Shotthand for (-1,1,0)*/
+	public static IntPosition northWest = new IntPosition(-1,1,0);
+	/**Shotthand for (-1,-1,0)*/
+	public static IntPosition southWest = new IntPosition(-1,-1,0);
+	/**Shotthand for (1,-1,0)*/
+	public static IntPosition southEast = new IntPosition(1,-1,0);
 }
 
 [System.Serializable]

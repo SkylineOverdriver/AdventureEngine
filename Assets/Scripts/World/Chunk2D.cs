@@ -88,6 +88,7 @@ public class Chunk2D : MonoBehaviour
 		Tile2D tile = tileObj.GetComponent<Tile2D>();
 		tile.tileID = id;
 		tile.tilePosition = pos;
+		tileGrid[pos.x, pos.y, pos.z] = tile;
 	}
 
 	/**Returns a tile at that position*/

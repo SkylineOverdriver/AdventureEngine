@@ -47,6 +47,9 @@ TagManager:
   - name: Tile
     uniqueID: 910755571
     locked: 0
+  - name: EntityShadows
+    uniqueID: 3273455665
+    locked: 0
   - name: Entity
     uniqueID: 3580327041
     locked: 0

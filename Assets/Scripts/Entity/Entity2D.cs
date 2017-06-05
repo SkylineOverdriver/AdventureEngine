@@ -19,18 +19,29 @@ public class Entity2D : MonoBehaviour
 	/**The animations on this entity*/
 	public Animator entityAnimations;
 
-	/**The steps of the entitie's movement*/
-	public Vector2 moveStep;
+	/**The number of steps per smooth movement, modifiyed by agility*/
+	public float moveStep = 10f;
+	/**The number of steps per smooth movement*/
+	public float moveStepBase = 10f;
 	/**The target location of the entity*/
 	public IntPosition targetPosition;
+	/**Is this entity currently moving*/
+	public bool currentlyMoving = false;
 
 	/**The position of this entity*/
 	public IntPosition position;
 
+	//TODO: Get rid of the temporary sprite renderer and animation list
+	/**The entity's sprite renderer*/
+	public SpriteRenderer spriteRenderer;
+	/**The sprite animation list*/
+	public Sprite[] spriteAnimationList;
+
 	// Use this for initialization
 	protected virtual void Start()
 	{
-		
+		World2D.theWorld.getTile(position).setEntity(this);
+		initEntity();
 	}
 	
 	// Update is called once per frame
@@ -39,25 +50,155 @@ public class Entity2D : MonoBehaviour
 		
 	}
 
+	/**Called when this entity is created, creates stats, and checks for entity position*/
+	public void initEntity()
+	{
+		if(World2D.theWorld.getTile(position).getEntity() != null)
+		{
+			World2D.theWorld.getTile(position).setEntity(this);
+		}
+		else
+		{
+			int range = 1;
+			for(int x = -range; x <= range; x++)
+			{
+				for(int y = -range; y <= range; y++)
+				{
+					if(World2D.theWorld.getTile(new IntPosition(x,y)).getEntity() == null)
+					{
+						World2D.theWorld.getTile(new IntPosition(x,y)).setEntity(this);
+						return;
+					}
+				}
+			}
+
+			this.die();
+		}
+	}
+
 	/**Teleorts this entity*/
 	public void Teleport(IntPosition destination)
 	{
+		World2D.theWorld.getTile(position).clearEntity();
 		targetPosition = destination;
 		transform.position = destination;
 		position = destination;
+		World2D.theWorld.getTile(position).setEntity(this);
 	}
 
+	[System.Obsolete("Use MoveSmooth Instead, it is finished and looks much nicer.")]
 	/**Moves this entity in the direction supplied*/
 	public virtual void Move(IntPosition location)
 	{
-		transform.Translate(location);
-		position = location;
+		if(World2D.theWorld.getTile(position + location).getMovable())
+		{
+			World2D.theWorld.getTile(position).clearEntity();
+			transform.Translate(location);
+			position = transform.position;
+			World2D.theWorld.getTile(position).setEntity(this);
+		}
 	}
 
 	/**Smothly moves this entity in the direction supplied, over time*/
-	public virtual void MoveSmooth(Vector2 direction, int frames)
+	public virtual void MoveSmooth(IntPosition direction)//, int frames)
 	{
+		if(World2D.theWorld.getTile(position + direction).getMovable() && !currentlyMoving)
+		{
+			currentlyMoving = true;
+			World2D.theWorld.getTile(position).clearEntity();
+			position = transform.position;
+			targetPosition = position + direction;
+			World2D.theWorld.getTile(targetPosition).setEntity(this);
+			ContinueMovement();
+		}
+	}
 
+	/**Continues the current movement of the player (Smooth Movement)*/
+	public virtual void ContinueMovement()
+	{
+		/*while(transform.position != targetPosition)
+		{
+			//TODO: Add increment methods for moving
+			//transform.position += (Vector3) (getDirection() / 10f);
+			yield return null;
+		}
+
+		StopCoroutine("ContinueMovement");*/
+
+		switch(direction)
+		{
+		case ObjectDirection.EAST:
+			StartCoroutine(ContinueMoveEast());
+			break;
+		case ObjectDirection.NORTH:
+			StartCoroutine(ContinueMoveNorth());
+			break;
+		case ObjectDirection.WEST:
+			StartCoroutine(ContinueMoveWest());
+			break;
+		case ObjectDirection.SOUTH:
+			StartCoroutine(ContinueMoveSouth());
+			break;
+		default:
+			Debug.LogWarning("Not Yet Implemented Movable Direction");
+			break;
+		}
+	}
+
+	/**Moves this entity East one frame*/
+	public virtual IEnumerator ContinueMoveEast()
+	{
+		while(transform.position.x < targetPosition.x)
+		{
+			transform.position += (Vector3) (Vector2.right / moveStep);
+			yield return null;
+		}
+		//Reset the position of the entity to the proper position (Floating point errors)
+		setPosition(targetPosition);
+		currentlyMoving = false;
+		StopCoroutine("ContinueMoveEast");
+	}
+
+	/**Moves this entity North one frame*/
+	public virtual IEnumerator ContinueMoveNorth()
+	{
+		while(transform.position.y < targetPosition.y)
+		{
+			transform.position += (Vector3) (Vector2.up / moveStep);
+			yield return null;
+		}
+		//Reset the position of the entity to the proper position (Floating point errors)
+		setPosition(targetPosition);
+		currentlyMoving = false;
+		StopCoroutine("ContinueMoveNorth");
+	}
+
+	/**Moves this entity West one frame*/
+	public virtual IEnumerator ContinueMoveWest()
+	{
+		while(transform.position.x > targetPosition.x)
+		{
+			transform.position += (Vector3) (Vector2.left / moveStep);
+			yield return null;
+		}
+		//Reset the position of the entity to the proper position (Floating point errors)
+		setPosition(targetPosition);
+		currentlyMoving = false;
+		StopCoroutine("ContinueMoveWest");
+	}
+
+	/**Moves this entity South one frame*/
+	public virtual IEnumerator ContinueMoveSouth()
+	{
+		while(transform.position.y > targetPosition.y)
+		{
+			transform.position += (Vector3) (Vector2.down / moveStep);
+			yield return null;
+		}
+		//Reset the position of the entity to the proper position (Floating point errors)
+		setPosition(targetPosition);
+		currentlyMoving = false;
+		StopCoroutine("ContinueMoveSouth");
 	}
 
 	/**Moves this entity in the given direction, distance number of tiles*/
@@ -70,7 +211,7 @@ public class Entity2D : MonoBehaviour
 	/**Moves this entity in the direction it's facing*/
 	public virtual void MoveForward(int distance)
 	{
-		transform.Translate(transform.right * distance);
+		Move(transform.right * distance);
 	}
 
 	/**Move this entity forward in the direction it's facing*/
@@ -79,28 +220,28 @@ public class Entity2D : MonoBehaviour
 		switch(direction)
 		{
 		case ObjectDirection.EAST:
-			transform.Translate(transform.right * distance);
+			MoveSmooth(transform.right * distance);
 			break;
 		case ObjectDirection.NORTH:
-			transform.Translate(transform.up * distance);
+			MoveSmooth(transform.up * distance);
 			break;
 		case ObjectDirection.WEST:
-			transform.Translate(-transform.right * distance);
+			MoveSmooth(-transform.right * distance);
 			break;
 		case ObjectDirection.SOUTH:
-			transform.Translate(-transform.up * distance);
+			MoveSmooth(-transform.up * distance);
 			break;
 		case ObjectDirection.NORTH_EAST:
-			transform.Translate((transform.up + transform.right) * distance);
+			MoveSmooth((transform.up + transform.right) * distance);
 			break;
 		case ObjectDirection.NORTH_WEST:
-			transform.Translate((transform.up + -transform.right) * distance);
+			MoveSmooth((transform.up + -transform.right) * distance);
 			break;
 		case ObjectDirection.SOUTH_WEST:
-			transform.Translate((-transform.up + -transform.right) * distance);
+			MoveSmooth((-transform.up + -transform.right) * distance);
 			break;
 		case ObjectDirection.SOUTH_EAST:
-			transform.Translate((-transform.up + transform.right) * distance);
+			MoveSmooth((-transform.up + transform.right) * distance);
 			break;
 		default:
 			Debug.Log("Unknown direction supplied!");
@@ -195,14 +336,21 @@ public class Entity2D : MonoBehaviour
 		//TODO: Finish rotation code
 	}
 
+	/**Set's the entities position (And transform)*/
+	public virtual void setPosition(IntPosition newPos)
+	{
+		transform.position = newPos;
+		position = newPos;
+	}
+
 	/**Called when this entity interacts with another entity*/
-	public virtual void OnInteract(Entity2D reciver)
+	public virtual void onInteract(Entity2D reciver)
 	{
 		
 	}
 
 	/**Called when this entity is interacted with*/
-	public virtual void OnInteracted(Entity2D sender)
+	public virtual void onInteracted(Entity2D sender)
 	{
 		
 	}
@@ -233,6 +381,69 @@ public class Entity2D : MonoBehaviour
 		default:
 			return Vector2.zero;
 		}
+	}
+
+	/**Called when this entity is attacked*/
+	public virtual void onAttacked(float damageIn)
+	{
+		//Do nothing
+	}
+
+	/**Called when this entity dies*/
+	public virtual void die()
+	{
+		this.enabled = false;
+		World2D.theWorld.getTile(position).clearEntity();
+	}
+		
+	//TODO: Make animations play from an animator (Sprite changing can be slower, and is less efficent)
+
+	/**Plays this entity's idle animation*/
+	public virtual void playIdleAnimation()
+	{
+
+	}
+
+	/**Plays this entity's walk animation*/
+	public virtual void playWalkAnimation()
+	{
+
+	}
+
+	/**Plays this entity's run animation*/
+	public virtual void playRunAnimation()
+	{
+		
+	}
+
+	/**Plays this entity's attack animation*/
+	public virtual void playAttackAnimation()
+	{
+		
+	}
+
+	/**Plays this entity's block animation*/
+	public virtual void playDefendAnimation()
+	{
+
+	}
+
+	/**Plays this entity's hurt animation*/
+	public virtual void playHurtAnimation()
+	{
+
+	}
+
+	/**Plays this entity's heal animation*/
+	public virtual void playHealAnimation()
+	{
+
+	}
+
+	/**Plays one of the entity's animations*/
+	public virtual void playAnimation(string name, float speed)
+	{
+		
 	}
 }
 
