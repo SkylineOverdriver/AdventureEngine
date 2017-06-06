@@ -169,6 +169,12 @@ public class Entity2DLiving : Entity2D
 	{
 		//World2D.theWorld.playerUIHelper.displayText("Testing", this.GetComponent<SpriteRenderer> ().sprite, this.entityName);
 	}
+
+	/**Updates all of this entities UI stats*/
+	public virtual void updateEntityStatUI()
+	{
+		
+	}
 }
 	
 public enum EntityGender : byte

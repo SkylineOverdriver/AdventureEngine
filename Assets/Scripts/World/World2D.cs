@@ -6,6 +6,10 @@ public class World2D : MonoBehaviour
 {
 	/**The tile list for all the tiles*/
 	public GameObject[] tileList = new GameObject[16];
+	/**The entity list for all the entitities*/
+	public GameObject[] entityList = new GameObject[8];
+	/**The item list for all the items*/
+	public GameObject[] itemList = new GameObject[16];
 
 	/**The chunks that are loaded in the world*/
 	public Dictionary<IntPosition, Chunk2D> loadedChunks = new Dictionary<IntPosition, Chunk2D>();
@@ -122,6 +126,38 @@ public class World2D : MonoBehaviour
 	public Tile2D getTileFromName(string tileName)
 	{
 		return EngineControl.loadedRegistry.retriveTile("base", "test");
+	}
+
+	/**Returns an entity from its name*/
+	public Entity2D getEntityIDFromName(string entityName)
+	{
+		foreach(GameObject go in entityList)
+		{
+			if(go.GetComponent<Entity2D>().name == entityName)
+				return go.GetComponent<Entity2D>();
+		}
+
+		return null;	
+	}
+
+	/**Returns an entity from its name*/
+	public Item2D getItemIDFromName(string itemName)
+	{
+		foreach(GameObject go in itemList)
+		{
+			if(go.GetComponent<Item2D>().name == itemName)
+				return go.GetComponent<Item2D>();
+		}
+
+		return null;	
+	}
+
+	/**Creates a dropped item from its existing item*/
+	public Entity2DItem createDroppedItem(Item2D item)
+	{
+		//TODO: Add code here
+		throw new System.NotImplementedException("CreateDropppedItem is not finished!");
+		return null;//Instantiate(entityList[3]);
 	}
 
 	/**Creates a new chunk at this position (Times the chunk size)*/

@@ -12,4 +12,10 @@ public class Entity2DEnemy : Entity2DNPC
 		//Temporary code to make this entity wait forever
 		//ai.addTask(new EntityAITask(AITaskType.WAIT, float.MaxValue));
 	}
+
+	/**Switches the enemies aggrovation state*/
+	public virtual void onEnemyAggro(Entity2D against)
+	{
+		ai.clearTasks();
+	}
 }

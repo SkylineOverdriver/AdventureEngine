@@ -99,6 +99,13 @@ public class Entity2D : MonoBehaviour
 		}
 	}
 
+	/**Moves this entity in the direction specifiyed, and the number of spaces specifiyed*/
+	public virtual void Move(ObjectDirection direction, int spaces)
+	{
+		RotateNoTransform(direction);
+		MoveSmooth(getDirection() * spaces);
+	}
+
 	/**Smothly moves this entity in the direction supplied, over time*/
 	public virtual void MoveSmooth(IntPosition direction)//, int frames)
 	{
@@ -106,11 +113,31 @@ public class Entity2D : MonoBehaviour
 		{
 			currentlyMoving = true;
 			World2D.theWorld.getTile(position).clearEntity();
+			OnTileExit(World2D.theWorld.getTile(position)); //Tile exit check
 			position = transform.position;
 			targetPosition = position + direction;
 			World2D.theWorld.getTile(targetPosition).setEntity(this);
+			OnTileEnter(World2D.theWorld.getTile(targetPosition)); //Tile Enter check
 			ContinueMovement();
 		}
+	}
+
+	/**Called whenever this entity enters a tile*/
+	public virtual void OnTileEnter(Tile2D tile)
+	{
+		//TODO: Make the call for this better
+	}
+
+	/**Called whenever this entity stays on a tile for more than one frame*/
+	public virtual void OnTileStay(Tile2D tile)
+	{
+		//TODO: Make this called in a way that it is not laggy
+	}
+
+	/**Called whenever this entity exits a tile*/
+	public virtual void OnTileExit(Tile2D tile)
+	{
+		//TODO: Make the call for this better
 	}
 
 	/**Continues the current movement of the player (Smooth Movement)*/
@@ -128,28 +155,32 @@ public class Entity2D : MonoBehaviour
 		switch(direction)
 		{
 		case ObjectDirection.EAST:
-			StartCoroutine(ContinueMoveEast());
+			StartCoroutine(MoveSmoothEast());
 			break;
 		case ObjectDirection.NORTH:
-			StartCoroutine(ContinueMoveNorth());
+			StartCoroutine(MoveSmoothNorth());
 			break;
 		case ObjectDirection.WEST:
-			StartCoroutine(ContinueMoveWest());
+			StartCoroutine(MoveSmoothWest());
 			break;
 		case ObjectDirection.SOUTH:
-			StartCoroutine(ContinueMoveSouth());
+			StartCoroutine(MoveSmoothSouth());
 			break;
 		case ObjectDirection.NORTH_EAST:
-
+			StartCoroutine(MoveSmoothNorth());
+			StartCoroutine(MoveSmoothEast());
 			break;
 		case ObjectDirection.NORTH_WEST:
-
+			StartCoroutine(MoveSmoothNorth());
+			StartCoroutine(MoveSmoothWest());
 			break;
 		case ObjectDirection.SOUTH_WEST:
-
+			StartCoroutine(MoveSmoothSouth());
+			StartCoroutine(MoveSmoothWest());
 			break;
 		case ObjectDirection.SOUTH_EAST:
-
+			StartCoroutine(MoveSmoothSouth());
+			StartCoroutine(MoveSmoothEast());
 			break;
 		default:
 			Debug.LogWarning("Not Yet Implemented Movable Direction");
@@ -158,7 +189,7 @@ public class Entity2D : MonoBehaviour
 	}
 
 	/**Moves this entity East one frame*/
-	public virtual IEnumerator ContinueMoveEast()
+	public virtual IEnumerator MoveSmoothEast()
 	{
 		while(transform.position.x < targetPosition.x)
 		{
@@ -168,11 +199,11 @@ public class Entity2D : MonoBehaviour
 		//Reset the position of the entity to the proper position (Floating point errors)
 		setPosition(targetPosition);
 		currentlyMoving = false;
-		StopCoroutine("ContinueMoveEast");
+		StopCoroutine("MoveSmoothEast");
 	}
 
 	/**Moves this entity North one frame*/
-	public virtual IEnumerator ContinueMoveNorth()
+	public virtual IEnumerator MoveSmoothNorth()
 	{
 		while(transform.position.y < targetPosition.y)
 		{
@@ -182,11 +213,11 @@ public class Entity2D : MonoBehaviour
 		//Reset the position of the entity to the proper position (Floating point errors)
 		setPosition(targetPosition);
 		currentlyMoving = false;
-		StopCoroutine("ContinueMoveNorth");
+		StopCoroutine("MoveSmoothNorth");
 	}
 
 	/**Moves this entity West one frame*/
-	public virtual IEnumerator ContinueMoveWest()
+	public virtual IEnumerator MoveSmoothWest()
 	{
 		while(transform.position.x > targetPosition.x)
 		{
@@ -196,11 +227,11 @@ public class Entity2D : MonoBehaviour
 		//Reset the position of the entity to the proper position (Floating point errors)
 		setPosition(targetPosition);
 		currentlyMoving = false;
-		StopCoroutine("ContinueMoveWest");
+		StopCoroutine("MoveSmoothWest");
 	}
 
 	/**Moves this entity South one frame*/
-	public virtual IEnumerator ContinueMoveSouth()
+	public virtual IEnumerator MoveSmoothSouth()
 	{
 		while(transform.position.y > targetPosition.y)
 		{
@@ -210,14 +241,7 @@ public class Entity2D : MonoBehaviour
 		//Reset the position of the entity to the proper position (Floating point errors)
 		setPosition(targetPosition);
 		currentlyMoving = false;
-		StopCoroutine("ContinueMoveSouth");
-	}
-
-	/**Moves this entity in the given direction, distance number of tiles*/
-	public virtual void Move(ObjectDirection dir, int distance)
-	{
-		Rotate(dir);
-		transform.Translate(transform.right * distance);
+		StopCoroutine("MoveSmoothSouth");
 	}
 
 	/**Moves this entity in the direction it's facing*/
@@ -406,6 +430,7 @@ public class Entity2D : MonoBehaviour
 	{
 		this.enabled = false;
 		World2D.theWorld.getTile(position).clearEntity();
+		//TODO: Create a dead clone entity at this position
 	}
 		
 	//TODO: Make animations play from an animator (Sprite changing can be slower, and is less efficent)
@@ -456,6 +481,12 @@ public class Entity2D : MonoBehaviour
 	public virtual void playAnimation(string name, float speed)
 	{
 		
+	}
+
+	/**Update any UI displays that this entity has*/
+	public virtual void updateEntityUI()
+	{
+		//Put An entity specific UI updating code here
 	}
 }
 

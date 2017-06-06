@@ -87,6 +87,21 @@ public class EntityAI
 		tasks.Add(task);
 	}
 
+	/**Removes a task from this entity's AI tasks*/
+	public void removeTask(int taskID)
+	{
+		tasks.RemoveAt(taskID);
+		if(currentTaskIndex > 0) 
+			currentTaskIndex--;
+	}
+
+	/**Clears all AI tasks from the entity's index*/
+	public void clearTasks()
+	{
+		tasks.Clear();
+		currentTaskIndex = 0;
+	}
+
 	/**Adds a patrol point to this AI movement points*/
 	public void addPatrolPoint(IntPosition position)
 	{

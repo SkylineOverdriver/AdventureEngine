@@ -20,11 +20,13 @@ public class Entity2DPlayer : Entity2DLiving
 	public KeyCode keyInteract = KeyCode.E;
 	/**The keycode that the player presses to attack an entity in that direction*/
 	public KeyCode keyAttack = KeyCode.Z;
+	/**Has the player already moved on this frame*/
+	public bool hasMoved = false;
 
 	/**The class of this player (Integer, 0 - 15, 0 = PAGE, 1 = PRINCE, 2 = BARD, 3 = SUMMONER, 4 = KING,
 	 5 = MAID, 6 = SYLPH, 7 = WITCH, 8 = MARTYR, 9 = QUEEN, 10 = HEIR, 11 = MAGE, 12 = KNIGHT, 13 = ROUGE
 	 14 = SAGE, 15 = HOST)*/
-	public PlayerClass playerClass = 0; 
+	public PlayerClass playerClass = 0;
 
 	/**The aspect of this player (Integer, 0 - 10, 0 = TIME, 1 = SPACE, 2 = LIGHT, 3 = VOID, 4 = LIFE, 5 = DOOM
 	 6 = BREATH, 7 = BLOOD, 8 = RAGE, 9 = SOUL, 10 = MIND)*/
@@ -39,30 +41,53 @@ public class Entity2DPlayer : Entity2DLiving
 	//Update is called once per frame
 	protected override void Update()
 	{
+		//Reset the movement variable so the player can move again (if they are not currently moving)
+		if(!currentlyMoving)
+			hasMoved = false;
+		
+		//Diagonal Directions
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyNorth) && Input.GetKey(keyEast)) || (Input.GetKeyDown(keyNorth) && Input.GetKeyDown(keyEast)))
+		{
+			Move(ObjectDirection.NORTH_EAST, 1);
+		}
+
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keySouth) && Input.GetKey(keyWest)) || (Input.GetKeyDown(keySouth) && Input.GetKeyDown(keyWest)))
+		{
+			Move(ObjectDirection.SOUTH_WEST, 1);
+		}
+
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyNorth) && Input.GetKey(keyWest)) || (Input.GetKeyDown(keyNorth) && Input.GetKeyDown(keyWest)))
+		{
+			Move(ObjectDirection.NORTH_WEST, 1);
+		}
+
+		if((Input.GetKey(keyQuickMove) && Input.GetKey(keySouth) && Input.GetKey(keyEast)) || (Input.GetKeyDown(keySouth) && Input.GetKeyDown(keyEast)))
+		{
+			Move(ObjectDirection.SOUTH_EAST, 1);
+		}
+			
+		//NSEW Directions
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyNorth)) || Input.GetKeyDown(keyNorth))
 		{
-			RotateNoTransform(ObjectDirection.NORTH);
-			MoveSmooth(movementNorth);
+			Move(ObjectDirection.NORTH, 1);
 		}
 
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keySouth)) || Input.GetKeyDown(keySouth))
 		{
-			RotateNoTransform(ObjectDirection.SOUTH);
-			MoveSmooth(movementSouth);
+			Move(ObjectDirection.SOUTH, 1);
 		}
 
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyEast)) || Input.GetKeyDown(keyEast))
 		{
-			RotateNoTransform(ObjectDirection.EAST);
-			MoveSmooth(movementEast);
+			Move(ObjectDirection.EAST, 1);
 		}
 
 		if((Input.GetKey(keyQuickMove) && Input.GetKey(keyWest)) || Input.GetKeyDown(keyWest))
 		{
-			RotateNoTransform(ObjectDirection.WEST);
-			MoveSmooth(movementWest);
+			Move(ObjectDirection.WEST, 1);
 		}
 
+		//Use Actions
 		if(Input.GetKey(keyInteract))
 		{
 			interact();
@@ -71,6 +96,24 @@ public class Entity2DPlayer : Entity2DLiving
 		if(Input.GetKeyDown(keyAttack))
 		{
 			attack();
+		}
+	}
+
+	/**Moves the player in the direction specifiyed, and the number of spaces*/
+	public override void Move(ObjectDirection direction, int spaces)
+	{
+		if(!hasMoved)
+		{
+			base.Move(direction, spaces);
+			hasMoved = true;
+		}
+	}
+		
+	public virtual void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.CompareTag("Entity"))
+		{
+			
 		}
 	}
 }
