@@ -68,6 +68,32 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  entityList:
+  - {fileID: 1582105156446710, guid: 7143daa98f66bb342816d57179421684, type: 2}
+  - {fileID: 1729162254993714, guid: cd2a6545755fa6e46a81be33a1b9ccf5, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemList:
+  - {fileID: 1402524856758550, guid: 99bcbcef101673a44977604a2e462955, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   chunkObject: {fileID: 1958633234050842, guid: 04f4a66fb682dd34783e97db8e9c9d21,
     type: 2}
   thePlayer: {fileID: 0}
