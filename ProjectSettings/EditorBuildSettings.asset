@@ -14,3 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Designer.unity
     guid: 25960f4d33bf48b4397c0d67df301b1f
+  - enabled: 1
+    path: Assets/Scenes/BattleTest.unity
+    guid: 6f607e113bfc96a49a1cb0928ad49ee5
+  - enabled: 1
+    path: Assets/Scenes/NewPlayer.unity
+    guid: adc5d667c8557fa499786be0581f2235
